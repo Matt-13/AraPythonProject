@@ -16,9 +16,9 @@ class MakeClassDiagram:
             self.allMyClasses.append(self.code.split("class")[i + 1])
 
 
-filename = "class MakeClassDiagram: def __init__(self, filename): self.allMyClasses = [] self.code = " \
-           "filename def count_occurrences(self, word, sentence): return sentence.lower().split().count(word)" \
-           "class Test: def __init__()"
+filename = """class MakeClassDiagram: def __init__(self, filename): self.allMyClasses = [] self.code = test
+class Test:
+class Test2:"""
 mkd = MakeClassDiagram(filename)
 mkd.find_classes()
 print(mkd.allMyClasses)
