@@ -1,4 +1,5 @@
-print("Hello World")
+# Import modules here
+from plantuml import *
 
 
 class MakeClassDiagram:
@@ -12,7 +13,7 @@ class MakeClassDiagram:
     def find_classes(self):
         value = self.count_occurrences("class", self.code)
 
-        for i in range (0, value):
+        for i in range(0, value):
             self.allMyClasses.append(self.code.split("class")[i + 1])
 
 
@@ -22,3 +23,5 @@ class Test2:"""
 mkd = MakeClassDiagram(filename)
 mkd.find_classes()
 print(mkd.allMyClasses)
+
+print("Compiled Successfully")
