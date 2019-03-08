@@ -1,5 +1,6 @@
 # Import modules here
 from plantuml import *
+from os import *
 
 
 class MakeClassDiagram:
@@ -24,4 +25,5 @@ mkd = MakeClassDiagram(filename)
 mkd.find_classes()
 print(mkd.allMyClasses)
 
+os.system('C:\\Windows\\System32\\cmd.exe /c CreateGraph.bat')
 print("Compiled Successfully")
