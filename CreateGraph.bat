@@ -1,1 +1,1 @@
-java -jar plantuml.jar graph.txt
+java -jar plantuml.jar Graph.txt
