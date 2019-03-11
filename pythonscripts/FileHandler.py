@@ -1,4 +1,3 @@
-from FileVerifier import FileVerifier
 from FileHandler import *
 
 class FileVerifier:
