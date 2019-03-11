@@ -1,4 +1,4 @@
-from FileVerifier import FileVerifier
+from FileHandler import FileVerifier
 from FileView import FileView
 
 
