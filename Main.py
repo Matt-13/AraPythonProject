@@ -1,5 +1,5 @@
 # Import modules here
-from plantuml import *
+# from plantuml import *
 import os
 
 
