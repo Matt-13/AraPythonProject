@@ -1,11 +1,10 @@
-from FileHandler import *
-
 class FileVerifier:
     def __init__(self):
         self.theData = self
 
-    def filevalidate(self):
+    def file_validate(self):
         pass
+
 
 fv = FileVerifier()
 
@@ -15,10 +14,10 @@ class FileReader:
         self.file = self
         self.contents = ""
 
-    def addfile(self, file_name):
+    def add_file(self, file_name):
         self.file = file_name
 
-    def openfile(self):
+    def open_file(self):
         try:
             with open(self.file, "r") as file:
                 self.contents = file.read()
@@ -27,5 +26,5 @@ class FileReader:
         except Exception as e:
             print("Error: {}".format(e))
 
-    def readdata(self):
-        fv.filevalidate(self.contents)
+    def read_data(self):
+        fv.file_validate(self.contents)

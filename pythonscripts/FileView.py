@@ -2,5 +2,5 @@ class FileView:
     def __init__(self):
         pass
 
-    def displaygraphcode(self):
+    def display_graph_code(self):
         pass

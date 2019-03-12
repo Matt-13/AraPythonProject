@@ -1,5 +1,6 @@
 class FileWriter:
     def __init__(self):
         pass
-    def writefile(self):
+
+    def write_file(self):
         pass

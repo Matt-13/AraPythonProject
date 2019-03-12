@@ -10,11 +10,24 @@ class FileController:
     def display(self):
         pass
 
-    def handlecommand(self, cmd):
+    def handle_command(self, cmd):
         self.command = cmd
+        try:
+            if cmd == "":
+                print("Command not entered. Continuing... ")
+            if cmd == "--help":
+                print("Displaying help file.")
+            if cmd == "--load":
+                print("Loading file..")
+        except SyntaxError as s:
+            print("Syntax Error:" + s)
+        except TabError as t:
+            print("Please remove tabs from your command." + t)
+        except ValueError as v:
+            print("Please use the correct command syntax" + v)
         print(self.command)
 
-    def readfile(self):
+    def read_file(self):
         pass
 
     def quit(self):
@@ -23,7 +36,7 @@ class FileController:
     def validate(self):
         pass
 
-    def viewhelp(self):
+    def view_help(self):
         pass
 
     @classmethod

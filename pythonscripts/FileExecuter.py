@@ -1,6 +1,12 @@
+# Ignore errors below this line.
 from FileController import FileController
-fc = FileController()
 
-fc.handlecommand('command')
 
+# Execute code here
+def main():
+    fc = FileController()
+    fc.handle_command('--help')
+
+
+main()
 # print(fc.get_species())
