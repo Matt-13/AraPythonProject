@@ -28,3 +28,7 @@ class FileReader:
 
     def read_data(self):
         fv.file_validate(self.contents)
+
+
+fr = FileReader()
+

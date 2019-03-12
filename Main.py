@@ -19,9 +19,7 @@ class MakeClassDiagram:
             self.allMyClasses.append(self.code.split("class")[i + 1])
 
 
-filename = """class MakeClassDiagram: def __init__(self, filename): self.allMyClasses = [] self.code = test
-class Test:
-class Test2:"""
+filename = open(string("Graph.txt", "r"))
 mkd = MakeClassDiagram(filename)
 mkd.find_classes()
 print(mkd.allMyClasses)
