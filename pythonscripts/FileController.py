@@ -14,6 +14,7 @@ class FileController:
         try:
             if cmd == "":
                 print("Command not entered. Continuing... ")
+                # Go to conversion + file reader
             if cmd == "--help":
                 print("Displaying help file.")
             if cmd == "--load":
