@@ -1,7 +1,6 @@
 # Import modules here
 from plantuml import *
 import os
-import time
 
 
 class MakeClassDiagram:
@@ -19,12 +18,15 @@ class MakeClassDiagram:
             self.allMyClasses.append(self.code.split("class")[i + 1])
 
 
-filename = open(string("Graph.txt", "r"))
-mkd = MakeClassDiagram(filename)
+with open("Graph.txt", "r") as filename:
+    data = filename.read().replace('\n', ' ')
+print(data)
+mkd = MakeClassDiagram(data)
 mkd.find_classes()
 print(mkd.allMyClasses)
 
-contents = """Alice -> Bob: test"""
+"""
+contents = Alice -> Bob: test
 if os.path.exists("Graph.txt"):
     os.remove("Graph.txt")
 if os.path.exists("Graph.png"):
@@ -35,6 +37,7 @@ file = open("Graph.txt", "x")
 file.write("@startuml\n")
 file.write(contents + "\n")
 file.write("@enduml")
+"""
 
-
+# Refresh Graph
 os.system('C:\\Windows\\System32\\cmd.exe /c CreateGraph.bat')
