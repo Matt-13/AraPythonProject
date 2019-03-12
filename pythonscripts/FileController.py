@@ -4,7 +4,6 @@ from FileView import FileView
 
 class FileController:
     def __init__(self):
-        self.species = 'Human'
         self.command = ''
 
     def display(self):
