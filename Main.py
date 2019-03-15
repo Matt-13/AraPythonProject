@@ -109,8 +109,8 @@ class ClassBuilder:
 
     def add_class_attributes(self):
         for an_attribute in self.attributes:
-            new_a_name = an_attribute.split(":")[0]
-            new_a_return = an_attribute.split(":")[1]
+            new_a_name = an_attribute.split(" : ")[0]
+            new_a_return = an_attribute.split(" : ")[1]
             new_a = Attribute(new_a_name, new_a_return)
             self.all_my_attributes.append(new_a)
 
