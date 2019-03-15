@@ -7,6 +7,7 @@ fv = FileView()
 class FileController:
     def __init__(self):
         self.command = ''
+        self.data = ''
 
     def display(self):
         pass
@@ -15,10 +16,9 @@ class FileController:
         self.command = cmd
         try:
             if cmd == "":
-                print("Command not entered. Continuing with default Graph.txt in root directory... ")
-            if cmd == "--help":
-                print("Displaying help file.")
-            if cmd == "--load":
+                print("Command not entered. Looking for default Graph.txt in root directory... ")
+                self.read_file("../Graph.txt")
+            if cmd == "load":
                 print("Loading file..")
         except SyntaxError as s:
             print("Syntax Error:" + s)
@@ -26,20 +26,25 @@ class FileController:
             print("Please remove tabs from your command." + t)
         except ValueError as v:
             print("Please use the correct command syntax" + v)
+        except FileNotFoundError as f:
+            print("File not found." + f)
         print(self.command)
 
-    def read_file(self):
-        pass
+    def read_file(self, filename):
+        self.data = fcon.read_file(filename)
+        print(self.data)
 
     def quit(self):
         pass
 
-    def validate(self):
-        pass
-
     def view_help(self):
-        pass
+        print("\n\n")
+        print("==================== Graph Interpreter Help File ====================")
+        print("")
+        print("FileExecuter.py does not need a command to run")
+        print("Command syntax: FileExecuter.py {optionalcommand}")
+        print("")
+        print("HELP..........................................Displays this help page")
+        print("LOAD {filename}..................Loads a file from the root directory")
+        print("LLOAD {path_to_filename}...........Loads a file from an absolute path")
 
-    @classmethod
-    def get_species(cls):
-        return cls.species
