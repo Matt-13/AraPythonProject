@@ -30,7 +30,7 @@ class FileConverter:
     def read_file(self, file):
         with open(file, "r") as filename:
             data = filename.read().replace('\n', ' ')
-        rduml = ReadPlantUML(data)
+        rduml = FileReader(data)
         self.classes = rduml.find_classes()
 
 
@@ -38,25 +38,92 @@ fc = FileConverter()
 
 
 class FileReader:
-    def __init__(self):
-        self.file = self
-        self.contents = ""
+    def __init__(self, filename):
+        self.allMyClasses = []
+        self.code = filename
 
-    def add_file(self, file_name):
-        self.file = file_name
-
-    def open_file(self):
+    def check_if_plantuml(self, code):
         try:
-            with open(self.file, "r") as file:
-                self.contents = file.read()
-        except FileNotFoundError:
-            print("Error: File not found.")
+            if code.split(' ', 1)[0] == "@startuml" and code.endswith("@enduml"):
+                return True
+            else:
+                return False
         except Exception as e:
-            print("Error: {}".format(e))
+            print(e)
 
-    def read_data(self):
-        fc.file_validate(self.contents)
+    # Check if the file contains the word "Class"
+    def count_occurrences(self, word, sentence):
+        try:
+            if sentence.lower().split().count(word) > 0:
+                return sentence.lower().split().count(word)
+            elif sentence.lower().split().count(word) == 0:
+                print("Classes not found.")
+        except Exception as e:
+            print(e)
+
+    def find_classes(self):
+        try:
+            isplantuml = self.check_if_plantuml(self.code)
+            if isplantuml:
+                print("File Accepted! Continuing..")
+                value = self.count_occurrences("class", self.code)
+
+                for i in range(0, value):
+                    self.allMyClasses.append(self.code.split("class")[i + 1])
+
+                return self.allMyClasses
+            else:
+                print("Program Stopping..")
+        except Exception as e:
+            print(e)
 
 
-fr = FileReader()
+class ClassBuilder:
+    def __init__(self, class_name, new_attributes, new_methods):
+        self.name = class_name
+        self.attributes = new_attributes
+        self.methods = new_methods
+        self.all_my_attributes = []
+        self.all_my_methods = []
 
+    def add_class_attributes(self):
+        for an_attribute in self.attributes:
+            new_a_name = an_attribute.split(" : ")[0]
+            new_a_return = an_attribute.split(" : ")[1]
+            new_a = Attribute(new_a_name, new_a_return)
+            self.all_my_attributes.append(new_a)
+
+    def add_class_methods(self):
+        for a_method in self.methods:
+            new_m_name = a_method.split(":")[0]
+            new_m_return = a_method.split("()")[1]
+            new_m = Method(new_m_name, new_m_return)
+            self.all_my_methods.append(new_m)
+
+    def print_class(self):
+        print("class", self.name, ":", end = "")
+        print("\n\n", "   def __init__ (self):")
+        for x in self.all_my_attributes:
+            print(x)
+        print("\n")
+        for x in self.all_my_methods:
+            print(x)
+        print("\n\n")
+
+
+class Attribute:
+    def __init__(self, new_name, new_return):
+        self.name = new_name
+        self._return = new_return
+
+    def __str__(self):
+        return f"       {self.name}= {self._return}"
+
+
+class Method:
+    def __init__(self, new_name, new_return):
+        self.name = new_name.replace("()", "")
+        self._return = new_return
+
+    def __str__(self):
+        return f"       {self.name} (self):\n               pass"

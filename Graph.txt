@@ -2,8 +2,6 @@
 package GraphInterpreter {
 class FileController {
 command : String
-==
-__init__()
 display()
 handle_command()
 read_file()
@@ -13,31 +11,22 @@ view_help()
 }
 class FileVerifier {
 theData : String
-==
-__init__()
 file_validate()
 }
 class FileReader {
 file : String
 contents : String
-==
-__init__()
 add_file()
 open_file()
 read_data()
 }
 class FileView {
-==
-__init__()
 display_graph_code()
 }
 class FileWriter {
-==
-__init__()
 write_file()
 }
 class FileExecuter {
-==
 main()
 }
 FileController *-- "Sends" FileVerifier

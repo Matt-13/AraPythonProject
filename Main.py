@@ -14,7 +14,7 @@ class ReadPlantUML:
 
     def check_if_plantuml(self, code):
         try:
-            if code.split(' ', 1)[0] == "@startuml" and code.endswith("@enduml"):
+            if code.startswith("@startuml") and code.endswith("@enduml"):
                 return True
             else:
                 return False
@@ -94,7 +94,7 @@ class ConvertPlantUML:
 
     def read_file(self, file):
         with open(file, "r") as filename:
-            data = filename.read().replace('\n', ' ')
+            data = filename.read()
         rduml = ReadPlantUML(data)
         self.classes = rduml.find_classes()
 
@@ -109,8 +109,8 @@ class ClassBuilder:
 
     def add_class_attributes(self):
         for an_attribute in self.attributes:
-            new_a_name = an_attribute.split(" : ")[0]
-            new_a_return = an_attribute.split(" : ")[1]
+            new_a_name = an_attribute.split(": ")[0]
+            new_a_return = an_attribute.split(": ")[1]
             new_a = Attribute(new_a_name, new_a_return)
             self.all_my_attributes.append(new_a)
 
@@ -122,14 +122,15 @@ class ClassBuilder:
             self.all_my_methods.append(new_m)
 
     def print_class(self):
-        print("class", self.name, ":", end = "")
-        print("\n\n", "   def __init__ (self):")
+        print("class", self.name, ":", end="\n\n")
         for x in self.all_my_attributes:
             print(x)
-        print("\n")
+        print("")
+        print("\tdef __init__(self):")
+        print("\t\tpass")
         for x in self.all_my_methods:
             print(x)
-        print("\n\n")
+        print("\n")
 
 
 class Attribute:
@@ -138,7 +139,7 @@ class Attribute:
         self._return = new_return
 
     def __str__(self):
-        return f"       {self.name}= {self._return}"
+        return f"\t{self.name}= {self._return}"
 
 
 class Method:
@@ -147,13 +148,13 @@ class Method:
         self._return = new_return
 
     def __str__(self):
-        return f"       {self.name} (self):\n               pass"
+        return f"\t{self.name}(self):\n\t\tpass"
 
 rd = ConvertPlantUML()
 rd.read_file("Graph.txt")
 print(rd.classes)
 rd.convert_file()
-# rd.print_program()
+rd.print_program()
 
 
 """
