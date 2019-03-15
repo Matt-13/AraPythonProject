@@ -1,12 +1,40 @@
-class FileVerifier:
+class FileConverter:
     def __init__(self):
-        self.theData = self
+        self.classes = []
+        self.convertedclasses = []
 
-    def file_validate(self):
-        pass
+    def convert_file(self):
+        print("Converting file to python syntax..")
+        for class_info in self.classes:
+            class_name = class_info.split(' ')[1]
+            attributes = []
+            methods = []
+            for line in class_info.split("\n"):
+                if line.find(":") != -1:
+                    attributes.append(line)
+            for line in class_info.split("\n"):
+                if line.find("()") != -1:
+                    methods.append(line)
+            self.add_class(class_name, attributes, methods)
+
+    def add_class(self, class_name, attributes, methods):
+        new_class = ClassBuilder(class_name, attributes, methods)
+        new_class.add_class_attributes()
+        new_class.add_class_methods()
+        self.convertedclasses.append(new_class)
+
+    def print_program(self):
+        for x in self.convertedclasses:
+            x.print_class()
+
+    def read_file(self, file):
+        with open(file, "r") as filename:
+            data = filename.read().replace('\n', ' ')
+        rduml = ReadPlantUML(data)
+        self.classes = rduml.find_classes()
 
 
-fv = FileVerifier()
+fc = FileConverter()
 
 
 class FileReader:
@@ -27,7 +55,7 @@ class FileReader:
             print("Error: {}".format(e))
 
     def read_data(self):
-        fv.file_validate(self.contents)
+        fc.file_validate(self.contents)
 
 
 fr = FileReader()

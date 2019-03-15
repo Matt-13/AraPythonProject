@@ -1,6 +1,8 @@
-from FileHandler import FileVerifier
+from FileHandler import FileConverter
 from FileView import FileView
 
+fcon = FileConverter()
+fv = FileView()
 
 class FileController:
     def __init__(self):
@@ -13,8 +15,7 @@ class FileController:
         self.command = cmd
         try:
             if cmd == "":
-                print("Command not entered. Continuing... ")
-                # Go to conversion + file reader
+                print("Command not entered. Continuing with default Graph.txt in root directory... ")
             if cmd == "--help":
                 print("Displaying help file.")
             if cmd == "--load":

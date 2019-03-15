@@ -153,7 +153,7 @@ rd = ConvertPlantUML()
 rd.read_file("Graph.txt")
 print(rd.classes)
 rd.convert_file()
-rd.print_program()
+# rd.print_program()
 
 
 """
