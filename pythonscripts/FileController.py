@@ -14,38 +14,43 @@ class FileController:
     def display(self):
         pass
 
+    # Command Handler - Made by Matthew
     def handle_command(self, cmd, file_location):
-        self.command = cmd
         self.file_location = file_location
+        self.command = cmd
         try:
-            if cmd == "":
+            if self.command == "":
                 print("Command not entered. Looking for a Graph.txt in root directory, and directory above... ")
+                print("Looking in: {} {}".format(os.path.abspath(file_location), "and directory above."))
                 try:
                     if os.path.isfile("../Graph.txt"):
+                        print("\nFile Found! Reading..\n")
                         self.read_file("../Graph.txt")
                     elif os.path.isfile("./Graph.txt"):
+                        print("\nFile Found! Reading..\n")
                         self.read_file("./Graph.txt")
                 except FileNotFoundError as f:
                     print("File not found! There must be a Graph.txt in the root directory!" + f)
-            if cmd == "load":
+            elif self.command == "load":
                 if file_location.endswith(".txt"):
                     try:
-                        if os.path.isfile("../{}").format(file_location):
-                            self.read_file("../{}").format(file_location)
-                        elif os.path.isfile("./{}").format(file_location):
-                            self.read_file("./{}").format(file_location)
+                        if os.path.isfile("../{}".format(file_location)):
+                            print("\nFile Found! Reading..\n")
+                            self.read_file("../{}".format(file_location))
+                        elif os.path.isfile("./{}".format(file_location)):
+                            print("\nFile Found! Reading..\n")
+                            self.read_file("./{}".format(file_location))
+                        else:
+                            print("\n==========ERROR==========\nFile not found! '{}'"
+                                  .format(os.path.abspath(file_location)))
                     except FileNotFoundError as f:
-                        print("File not found! There must be a {}.txt in the root directory!" + f).format(file_location)
-                elif not file_location.endswith(".txt"):
-                    try:
-                        if os.path.isfile("../{}.txt").format(file_location):
-                            self.read_file("../{}.txt").format(file_location)
-                        elif os.path.isfile("./{}.txt").format(file_location):
-                            self.read_file("./{}.txt").format(file_location)
-                    except FileNotFoundError as f:
-                        print("File not found! There must be a {}.txt in the root directory!" + f).format(file_location)
-                print("Loading file in root directory..")
-            if cmd == "lload":
+                        print("File not found! There must be a {}.txt "
+                              "in the root directory! {}".format(file_location, f))
+                elif file_location == "":
+                    print("No filename entered.\nExpected Syntax: load {filename.txt}")
+                else:
+                    print("\n==========ERROR==========\nSyntax Error\nExpected Syntax: load {filename.txt}")
+            elif self.command == "lload":
                 self.read_file(file_location)
 
         except SyntaxError as s:
@@ -56,12 +61,12 @@ class FileController:
             print("Please use the correct command syntax" + v)
         except FileNotFoundError as f:
             print("File not found." + f)
-        print(self.command)
 
+    # Reads file - Liam
     def read_file(self, filename):
         self.data = fcon.read_file(filename)
-        print(self.data)
 
+    # Not sure if needed! - Matthew
     def quit(self):
         pass
 
@@ -69,7 +74,8 @@ class FileController:
         print("\n\n")
         print("==================== Graph Interpreter Help File ====================")
         print("")
-        print("FileExecuter.py does not need a command to run")
+        print("NOTE: FileExecuter.py does not need a command to run")
+        print("NOTE: FileExecuter.py expects a graph.txt in the root directory.")
         print("Command syntax: FileExecuter.py {optionalcommand}")
         print("")
         print("HELP..........................................Displays this help page")

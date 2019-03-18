@@ -49,7 +49,7 @@ class FileReader:
             else:
                 return False
         except Exception as e:
-            print(e)
+            pass
 
     # Check if the file contains the word "Class"
     def count_occurrences(self, word, sentence):
@@ -59,13 +59,13 @@ class FileReader:
             elif sentence.lower().split().count(word) == 0:
                 print("Classes not found.")
         except Exception as e:
-            print(e)
+            pass
 
     def find_classes(self):
         try:
             isplantuml = self.check_if_plantuml(self.code)
             if isplantuml:
-                print("File Accepted! Continuing..")
+                print("\nFile is correct PlantUML Syntax! Continuing..")
                 value = self.count_occurrences("class", self.code)
 
                 for i in range(0, value):
@@ -75,7 +75,7 @@ class FileReader:
             else:
                 print("Program Stopping..")
         except Exception as e:
-            print(e)
+            pass
 
 
 class ClassBuilder:
