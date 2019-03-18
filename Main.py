@@ -99,6 +99,7 @@ class ConvertPlantUML:
         self.classes = rduml.find_classes()
 
 
+# Sarah Ball's class builder (been slightly modified by Liam + Matt)
 class ClassBuilder:
     def __init__(self, class_name, new_attributes, new_methods):
         self.name = class_name
@@ -121,6 +122,7 @@ class ClassBuilder:
             new_m = Method(new_m_name, new_m_return)
             self.all_my_methods.append(new_m)
 
+    # Liam Brydon's modified code (originally created by Sarah Ball)
     def print_class(self):
         print("class", self.name, ":", end="\n\n")
         for x in self.all_my_attributes:
@@ -133,6 +135,7 @@ class ClassBuilder:
         print("\n")
 
 
+# Sarah Ball's code - Modified by Liam + Matt for compatibility with tab escape characters.
 class Attribute:
     def __init__(self, new_name, new_return):
         self.name = new_name
@@ -142,6 +145,7 @@ class Attribute:
         return f"\t{self.name}= {self._return}"
 
 
+# Sarah Ball's code - Modified by Liam + Matt for compatibility with tab escape characters.
 class Method:
     def __init__(self, new_name, new_return):
         self.name = new_name.replace("()", "")
