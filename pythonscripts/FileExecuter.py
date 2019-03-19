@@ -28,7 +28,10 @@ def main(argv):
             elif str(sys.argv[1] == "lload"):
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\nLload requires a file to load.\nSyntax: lload {path_to_file.txt}")
-                fc.handle_command("lload", str(sys.argv[2]))
+                if "\\" in str(sys.argv[2]):
+                    fc.handle_command("lload", str(sys.argv[2]))
+                else:
+                    print("Path must be an absolute path.")
     except IndexError as i:
         pass
     except Exception as e:
