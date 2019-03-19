@@ -2,9 +2,8 @@
 # from plantuml import *
 import os
 import sys
-
 # sys.argv[2] - import command line args.
-
+from sys import *
 
 # FileReader Example
 class ReadPlantUML:
@@ -90,7 +89,14 @@ class ConvertPlantUML:
 
     def print_program(self):
         for x in self.convertedclasses:
+            #print(str(x))
             x.print_class()
+
+    def return_program(self):
+       # out = ""
+        for x in self.convertedclasses:
+            x.return_class()
+       # return out
 
     def read_file(self, file):
         with open(file, "r") as filename:
@@ -134,6 +140,20 @@ class ClassBuilder:
             print(x)
         print("\n")
 
+    def return_class(self):
+        text_file = open("Output.txt", "w")
+        text_file.write(str("class {}:").format(self.name))
+        text_file.write(str("\n\n"))
+
+        for x in self.all_my_attributes:
+            text_file.write(str("\n {}".format(x)))
+        text_file.write("")
+        text_file.write("\t" + "def __init__(self):")
+        text_file.write("\t\t" + "pass")
+        for x in self.all_my_methods:
+            text_file.write(str(x))
+        text_file.write("\n")
+
 
 # Sarah Ball's code - Modified by Liam + Matt for compatibility with tab escape characters.
 class Attribute:
@@ -154,12 +174,26 @@ class Method:
     def __str__(self):
         return f"\t{self.name}(self):\n\t\tpass"
 
+
+class FileWriter:
+    def __init__(self):
+       pass
+
+    @staticmethod
+    def write_file(code):
+        text_file = open("Output.txt", "w")
+        text_file.write(str(code))
+        text_file.close()
+
+
 rd = ConvertPlantUML()
 rd.read_file("Graph.txt")
-print(rd.classes)
-rd.convert_file()
-rd.print_program()
 
+rd.convert_file()
+rd.return_program()
+
+fileWriter = FileWriter()
+fileWriter.write_file(rd.return_program)
 
 """
 contents = Alice -> Bob: test
