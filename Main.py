@@ -97,7 +97,6 @@ class ConvertPlantUML:
         out = ""
         for x in self.convertedclasses:
             out += (x.return_class())
-        out += "fuck you "
         self.codeToText += out
 
         # text_file = open("Output.txt", "w")
@@ -149,16 +148,16 @@ class ClassBuilder:
     def return_class(self):
         out = ""
         out += str("class {}:").format(self.name)
-        out += str("\n\n")
+        out += str("\n")
 
         for x in self.all_my_attributes:
-            out += str("\n {}".format(x))
-        out += str("")
-        out += str("\t" + "def __init__(self):")
+            out += str("\n{}".format(x))
+        out += str("\n")
+        out += str("\t" + "def __init__(self):\n")
         out += str("\t\t" + "pass")
         for x in self.all_my_methods:
-            out += str(x)
-        out += str("\n")
+            out += str("\n{}".format(x))
+        out += str("\n\n")
         return out
 
 
