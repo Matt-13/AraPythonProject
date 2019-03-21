@@ -1,7 +1,8 @@
 class FileConverter:
     def __init__(self):
         self.classes = []
-        self.convertedclasses = []
+        self.converted_classes =[]
+        self.codeToText = ""
 
     def convert_file(self):
         print("Converting file to python syntax..")
@@ -21,17 +22,24 @@ class FileConverter:
         new_class = ClassBuilder(class_name, attributes, methods)
         new_class.add_class_attributes()
         new_class.add_class_methods()
-        self.convertedclasses.append(new_class)
+        self.converted_classes.append(new_class)
 
     def print_program(self):
-        for x in self.convertedclasses:
+        for x in self.converted_classes:
             x.print_class()
+
+    def return_program(self):
+        out = ""
+        for x in self.converted_classes:
+            out += (x.return_class())
+        self.codeToText += out
 
     def read_file(self, file):
         with open(file, "r") as filename:
-            data = filename.read().replace('\n', ' ')
+            data = filename.read()
         rduml = FileReader(data)
         self.classes = rduml.find_classes()
+        self.return_program()
 
 
 fc = FileConverter()
@@ -44,12 +52,12 @@ class FileReader:
 
     def check_if_plantuml(self, code):
         try:
-            if code.split(' ', 1)[0] == "@startuml" and code.endswith("@enduml"):
+            if code.startswith("@startuml") and code.endswith("@enduml"):
                 return True
             else:
                 return False
         except Exception as e:
-            pass
+            print(e)
 
     # Check if the file contains the word "Class"
     def count_occurrences(self, word, sentence):
@@ -59,13 +67,13 @@ class FileReader:
             elif sentence.lower().split().count(word) == 0:
                 print("Classes not found.")
         except Exception as e:
-            pass
+            print(e)
 
     def find_classes(self):
         try:
             isplantuml = self.check_if_plantuml(self.code)
             if isplantuml:
-                print("\nFile is correct PlantUML Syntax! Continuing..")
+                print("File Accepted! Continuing..")
                 value = self.count_occurrences("class", self.code)
 
                 for i in range(0, value):
@@ -75,7 +83,8 @@ class FileReader:
             else:
                 print("Program Stopping..")
         except Exception as e:
-            pass
+            print(e)
+
 
 
 class ClassBuilder:
@@ -88,8 +97,8 @@ class ClassBuilder:
 
     def add_class_attributes(self):
         for an_attribute in self.attributes:
-            new_a_name = an_attribute.split(" : ")[0]
-            new_a_return = an_attribute.split(" : ")[1]
+            new_a_name = an_attribute.split(": ")[0]
+            new_a_return = an_attribute.split(": ")[1]
             new_a = Attribute(new_a_name, new_a_return)
             self.all_my_attributes.append(new_a)
 
@@ -100,30 +109,49 @@ class ClassBuilder:
             new_m = Method(new_m_name, new_m_return)
             self.all_my_methods.append(new_m)
 
+    # Liam Brydon's modified code (originally created by Sarah Ball)
     def print_class(self):
-        print("class", self.name, ":", end = "")
-        print("\n\n", "   def __init__ (self):")
+        print("class", self.name, ":", end="\n\n")
         for x in self.all_my_attributes:
             print(x)
-        print("\n")
+        print("")
+        print("\tdef __init__(self):")
+        print("\t\tpass")
         for x in self.all_my_methods:
             print(x)
-        print("\n\n")
+        print("\n")
+
+    def return_class(self):
+        out = ""
+        out += str("class {}:").format(self.name)
+        out += str("\n\n")
+
+        for x in self.all_my_attributes:
+            out += str("\n {}".format(x))
+        out += str("")
+        out += str("\t" + "def __init__(self):")
+        out += str("\t\t" + "pass")
+        for x in self.all_my_methods:
+            out += str(x)
+        out += str("\n")
+        return out
 
 
+# Sarah Ball's code - Modified by Liam + Matt for compatibility with tab escape characters.
 class Attribute:
     def __init__(self, new_name, new_return):
         self.name = new_name
         self._return = new_return
 
     def __str__(self):
-        return f"       {self.name}= {self._return}"
+        return f"\t{self.name}= {self._return}"
 
 
+# Sarah Ball's code - Modified by Liam + Matt for compatibility with tab escape characters.
 class Method:
     def __init__(self, new_name, new_return):
         self.name = new_name.replace("()", "")
         self._return = new_return
 
     def __str__(self):
-        return f"       {self.name} (self):\n               pass"
+        return f"\t{self.name}(self):\n\t\tpass"

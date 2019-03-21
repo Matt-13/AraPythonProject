@@ -67,6 +67,7 @@ class ConvertPlantUML:
         self.classes = []
         self.convertedclasses =[]
 
+        self.codeToText = ""
     def convert_file(self):
         print("Converting file to python syntax..")
         for class_info in self.classes:
@@ -93,10 +94,15 @@ class ConvertPlantUML:
             x.print_class()
 
     def return_program(self):
-       # out = ""
+        out = ""
         for x in self.convertedclasses:
-            x.return_class()
-       # return out
+            out += (x.return_class())
+        out += "fuck you "
+        self.codeToText += out
+
+        # text_file = open("Output.txt", "w")
+        return self.codeToText
+
 
     def read_file(self, file):
         with open(file, "r") as filename:
@@ -141,18 +147,19 @@ class ClassBuilder:
         print("\n")
 
     def return_class(self):
-        text_file = open("Output.txt", "w")
-        text_file.write(str("class {}:").format(self.name))
-        text_file.write(str("\n\n"))
+        out = ""
+        out += str("class {}:").format(self.name)
+        out += str("\n\n")
 
         for x in self.all_my_attributes:
-            text_file.write(str("\n {}".format(x)))
-        text_file.write("")
-        text_file.write("\t" + "def __init__(self):")
-        text_file.write("\t\t" + "pass")
+            out += str("\n {}".format(x))
+        out += str("")
+        out += str("\t" + "def __init__(self):")
+        out += str("\t\t" + "pass")
         for x in self.all_my_methods:
-            text_file.write(str(x))
-        text_file.write("\n")
+            out += str(x)
+        out += str("\n")
+        return out
 
 
 # Sarah Ball's code - Modified by Liam + Matt for compatibility with tab escape characters.
@@ -180,8 +187,9 @@ class FileWriter:
        pass
 
     @staticmethod
-    def write_file(code):
-        text_file = open("Output.txt", "w")
+    def write_file(code, file_name):
+        text_file = open(str(file_name), "w")
+        print(code)
         text_file.write(str(code))
         text_file.close()
 
@@ -193,7 +201,8 @@ rd.convert_file()
 rd.return_program()
 
 fileWriter = FileWriter()
-fileWriter.write_file(rd.return_program)
+fileWriter.write_file(rd.codeToText, "Output.txt")
+
 
 """
 contents = Alice -> Bob: test

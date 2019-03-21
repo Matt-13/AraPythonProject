@@ -1,8 +1,10 @@
 from FileHandler import FileConverter
 from FileView import FileView
+from FileWriter import FileWriter
 import os
 
 fcon = FileConverter()
+fw = FileWriter()
 fv = FileView()
 
 
@@ -104,7 +106,11 @@ class FileController:
 
     # Reads file - Liam
     def read_file(self, filename):
-        self.data = fcon.read_file(filename)
+        print(filename)
+        fcon.read_file(filename)
+        self.data = fcon.codeToText
+        print(self.data)
+        fw.write_file(self.data, "Output.txt")
 
     # Not sure if needed! - Matthew
     def quit(self):
