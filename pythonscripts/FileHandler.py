@@ -33,13 +33,14 @@ class FileConverter:
         for x in self.converted_classes:
             out += (x.return_class())
         self.codeToText += out
+        print(out)
 
     def read_file(self, file):
         with open(file, "r") as filename:
             data = filename.read()
         rduml = FileReader(data)
         self.classes = rduml.find_classes()
-        self.return_program()
+        self.print_program()
 
 
 fc = FileConverter()
