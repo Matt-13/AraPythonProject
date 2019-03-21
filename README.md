@@ -16,9 +16,9 @@ Python Project for Ara Sem 1 2019
 
 ### Command Line Parameters
 
-HELP Displays this help page
-LOAD {filename} Loads a file from the root directory - Will look in the Current Execution Directory (Use CMD CD command to change the directory- otherwise it will look in C:\)
-LLOAD {path_to_filename} Loads a file from an absolute path - LLOAD Stands for "Long Load" from a long absolute path.
+1. HELP Displays this help page
+2. LOAD {filename} Loads a file from the root directory - Will look in the Current Execution Directory (Use CMD CD command to change the directory- otherwise it will look in C:\)
+3. LLOAD {path_to_filename} Loads a file from an absolute path - LLOAD Stands for "Long Load" from a long absolute path.
 ....
 May add more.
 
