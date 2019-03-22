@@ -41,8 +41,6 @@ class FileConverter:
             data = filename.read()
         rduml = FileReader(data)
         self.classes = rduml.find_classes()
-        #self.return_program()
-        print(self.codeToText + "test")
 
 
 fc = FileConverter()
@@ -126,17 +124,28 @@ class ClassBuilder:
 
     def return_class(self):
         out = ""
+        out += str("\n\n\n")
         out += str("class {}:").format(self.name)
         out += str("\n\n")
 
+        length = len(self.all_my_attributes)
+        count = 0
         for x in self.all_my_attributes:
-            out += str("\n {}".format(x))
-        out += str("")
-        out += str("\t" + "def __init__(self):")
-        out += str("\t\t" + "pass")
+            if count == length - 1:
+                out += str("{}".format(x))
+                out += str("\n\n")
+                count += 1
+            elif count < length:
+                out += str("{}".format(x))
+                out += str("\n")
+                count += 1
+
+        out += str("\t" + "def __init__(self):\n")
+        out += str("\t\t" + "pass\n")
+
         for x in self.all_my_methods:
-            out += str(x)
-        out += str("\n")
+            out += str("\n{}".format(x))
+            out += str("\n")
         return out
 
 
