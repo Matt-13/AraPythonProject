@@ -1,9 +1,10 @@
+# Ignore errors here.
 from FileHandler import FileConverter
 from FileView import FileView
 from FileWriter import FileWriter
 import os
 
-fcon = FileConverter()
+fconv = FileConverter()
 fw = FileWriter()
 fv = FileView()
 
@@ -13,9 +14,6 @@ class FileController:
         self.command = ''
         self.data = 'empty'
         self.file_location = ''
-
-    def display(self):
-        pass
 
     # Command Handler - Made by Matthew
     def handle_command(self, cmd, file_location):
@@ -89,11 +87,11 @@ class FileController:
                               "{}".format(p))
                 elif file_location == "":
                     print("No filename entered.\n"
-                          "Expected Syntax: load {filename.txt}")
+                          "Expected Syntax: lload {filename.txt}")
                 else:
                     print("\n==========ERROR==========\n"
-                          "Syntax Error\n"
-                          "Expected Syntax: load {filename.txt}")
+                          "File Type Error - File must end in .txt!\n"
+                          "Expected Syntax: lload {filename.txt}")
 
         except SyntaxError as s:
             print("Syntax Error:" + s)
@@ -106,42 +104,34 @@ class FileController:
 
     # Reads file - Liam
     def read_file(self, filename):
-        fcon.read_file(filename)
+        fconv.read_file(filename)
         # @Liam - you missed this ;)
-        fcon.convert_file()
-        fcon.return_program()
+        fconv.convert_file()
+        fconv.return_program()
 
         # need to fix below here now. - somewhere in the filehandler it isn't sending back.
-        self.data = fcon.codeToText
+        self.data = fconv.codeToText
         fw.write_file(self.data, "Output.txt")
 
+    # Liam
     def print_file(self):
         fv.display_graph_code(self.data)
 
+    # Liam
     def save_file(self, file_name):
         fw.write_file(self.data, file_name)
         print(self.data)
 
-    # Not sure if needed! - Matthew
+    # Matthew
     def quit(self):
         pass
 
+    # Matthew
     def view_help(self):
-        print("\n\n")
-        print("==================== "
-              "Graph Interpreter Help File "
-              "====================")
-        print("")
-        print("NOTE: FileExecuter.py "
-              "does not need a command to run")
-        print("NOTE: FileExecuter.py "
-              "expects a graph.txt in the root directory.")
-        print("      if running without a command.")
-        print("Command syntax: FileExecuter.py {optionalcommand}")
-        print("")
-        print("HELP.........................."
-              "................Displays this help page")
-        print("LOAD {filename}..............."
-              "...Loads a file from the root directory")
-        print("LLOAD {path_to_filename}......"
-              ".....Loads a file from an absolute path")
+        fv.print_help()
+
+    # Matthew
+    def output(self, message):
+        if message == "e":
+            fv.general_error()
+        fv.output(message)

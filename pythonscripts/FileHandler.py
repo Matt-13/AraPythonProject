@@ -4,6 +4,7 @@ class FileConverter:
         self.converted_classes =[]
         self.codeToText = ""
 
+    # Made by Sarah - Modified by Matt
     def convert_file(self):
         print("Converting file to python syntax..")
         for class_info in self.classes:
@@ -18,23 +19,26 @@ class FileConverter:
                     methods.append(line)
             self.add_class(class_name, attributes, methods)
 
+    # Made by Sarah
     def add_class(self, class_name, attributes, methods):
         new_class = ClassBuilder(class_name, attributes, methods)
         new_class.add_class_attributes()
         new_class.add_class_methods()
         self.converted_classes.append(new_class)
 
+    # Made by Sarah
     def print_program(self):
         for x in self.converted_classes:
             x.print_class()
 
+    # Made by Liam
     def return_program(self):
         out = ""
         for x in self.converted_classes:
             out += (x.return_class())
         self.codeToText += out
 
-
+    # Made by Matt & Liam
     def read_file(self, file):
         with open(file, "r") as filename:
             data = filename.read()
@@ -45,11 +49,13 @@ class FileConverter:
 fc = FileConverter()
 
 
+# Made by Liam & Matt
 class FileReader:
     def __init__(self, filename):
         self.allMyClasses = []
         self.code = filename
 
+    # Made by Matt
     def check_if_plantuml(self, code):
         try:
             if code.startswith("@startuml") and code.endswith("@enduml"):
@@ -59,6 +65,7 @@ class FileReader:
         except Exception as e:
             print(e)
 
+    # Made by Liam
     # Check if the file contains the word "Class"
     def count_occurrences(self, word, sentence):
         try:
@@ -69,6 +76,7 @@ class FileReader:
         except Exception as e:
             print(e)
 
+    # Made by Liam & Matt
     def find_classes(self):
         try:
             isplantuml = self.check_if_plantuml(self.code)
@@ -81,12 +89,12 @@ class FileReader:
 
                 return self.allMyClasses
             else:
-                print("Program Stopping..")
+                print("File not in PlantUML Syntax! Program Stopping..")
         except Exception as e:
             print(e)
 
 
-
+# Made by Sarah
 class ClassBuilder:
     def __init__(self, class_name, new_attributes, new_methods):
         self.name = class_name
@@ -110,6 +118,7 @@ class ClassBuilder:
             self.all_my_methods.append(new_m)
 
     # Liam Brydon's modified code (originally created by Sarah Ball)
+    # Used only for debug!
     def print_class(self):
         print("class", self.name, ":", end="\n\n")
         for x in self.all_my_attributes:
@@ -121,6 +130,7 @@ class ClassBuilder:
             print(x)
         print("\n")
 
+    # Made by Liam
     def return_class(self):
         out = ""
         out += str("\n\n\n")

@@ -27,9 +27,10 @@ def main(argv):
             if str(sys.argv[1]) == "help":
                 fc.view_help()
 
-            if str(sys.argv[1]) == "save":
+            elif str(sys.argv[1]) == "save":
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\n"
+                          "Syntax Error:\n"
                           "Load requires a file to save to.\n"
                           "Syntax: save {file.txt}")
                 else:
@@ -38,6 +39,7 @@ def main(argv):
             elif str(sys.argv[1]) == "load":
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\n"
+                          "Syntax Error:\n"
                           "Load requires a file to load.\n"
                           "Syntax: load {file.txt}")
                 else:
@@ -45,16 +47,23 @@ def main(argv):
             elif str(sys.argv[1] == "lload"):
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\n"
+                          "Syntax Error:\n"
                           "Lload requires a file to load.\n"
                           "Syntax: lload {path_to_file.txt}")
                 if "\\" in str(sys.argv[2]):
                     fc.handle_command("lload", str(sys.argv[2]))
                 else:
-                    print("Path must be an absolute path.")
+                    print("\n=======ERROR=======\n"
+                          "Syntax Error:\n"
+                          "Path must be an absolute path.")
     except IndexError as i:
         pass
     except Exception as e:
         pass
+    except PermissionError as p:
+        print("File Permission Error!"
+              "Do you have the correct permission to read the file?"
+              + str(p))
 
 
 def print_to_screen():
