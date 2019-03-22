@@ -1,7 +1,7 @@
 # Ignore errors below this line.
 import sys
 from FileController import FileController
-from FileView import FileView
+# from FileView import FileView
 
 # Execute code here
 # Matthew Whitaker's code.
@@ -13,13 +13,12 @@ def main(argv):
     # For Debugging Sys.Argv
     # print('Number of arguments:', len(sys.argv), 'arguments.')
     # print('Argument List:', str(sys.argv))
-    inputfile = ''
     try:
         if len(sys.argv) < 2:
             print("\nNo arguments entered.. "
                   "Continuing with defaults.")
             fc.handle_command('', '')
-            #print_to_screen()
+            # print_to_screen()
         if len(sys.argv) > 3:
             print("\nToo many arguments entered. "
                   "Please enter at most 2.")
@@ -30,7 +29,6 @@ def main(argv):
             elif str(sys.argv[1]) == "save":
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\n"
-                          "Syntax Error:\n"
                           "Load requires a file to save to.\n"
                           "Syntax: save {file.txt}")
                 else:
@@ -39,7 +37,6 @@ def main(argv):
             elif str(sys.argv[1]) == "load":
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\n"
-                          "Syntax Error:\n"
                           "Load requires a file to load.\n"
                           "Syntax: load {file.txt}")
                 else:
@@ -47,23 +44,19 @@ def main(argv):
             elif str(sys.argv[1] == "lload"):
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\n"
-                          "Syntax Error:\n"
                           "Lload requires a file to load.\n"
                           "Syntax: lload {path_to_file.txt}")
                 if "\\" in str(sys.argv[2]):
                     fc.handle_command("lload", str(sys.argv[2]))
                 else:
-                    print("\n=======ERROR=======\n"
-                          "Syntax Error:\n"
-                          "Path must be an absolute path.")
-    except IndexError as i:
+                    print("Path must be an absolute path.")
+    # Ignores issues with Sys.argv
+    except IndexError:
         pass
-    except Exception as e:
-        pass
-    except PermissionError as p:
-        print("File Permission Error!"
-              "Do you have the correct permission to read the file?"
-              + str(p))
+    # Checks for file permission errors.
+    except PermissionError:
+        print("Permission Error!\n"
+              "Check you have the permission to read the file!")
 
 
 def print_to_screen():

@@ -1,12 +1,24 @@
+""" Made by 3 students:
+    Matthew Whitaker
+    Liam Brydon
+    Sarah Ball (providing the model)
+"""
+# Code passes the PEP8 Check.
+
+import datetime
+from FileView import FileView
+fv = FileView()
+
+
 class FileConverter:
     def __init__(self):
         self.classes = []
-        self.converted_classes =[]
+        self.converted_classes = []
         self.codeToText = ""
 
     # Made by Sarah - Modified by Matt
     def convert_file(self):
-        print("Converting file to python syntax..")
+        fv.plantuml_converting()
         for class_info in self.classes:
             class_name = class_info.split(' ')[1]
             attributes = []
@@ -32,8 +44,11 @@ class FileConverter:
             x.print_class()
 
     # Made by Liam
+    # Modified by Matt to pass the PEP8 checks.
     def return_program(self):
-        out = ""
+        out = "# File generated & created on: " + str(datetime.datetime.now())
+        out += "\n# File passes the PEP8 check."
+        out += "\n\n"
         for x in self.converted_classes:
             out += (x.return_class())
         self.codeToText += out
@@ -133,7 +148,7 @@ class ClassBuilder:
     # Made by Liam
     def return_class(self):
         out = ""
-        out += str("\n\n\n")
+        out += str("\n")
         out += str("class {}:").format(self.name)
         out += str("\n\n")
 
@@ -149,30 +164,40 @@ class ClassBuilder:
                 out += str("\n")
                 count += 1
 
-        out += str("\t" + "def __init__(self):\n")
-        out += str("\t\t" + "pass\n")
+        out += str("    " + "def __init__(self):\n")
+        out += str("        " + "pass\n\n")
 
         for x in self.all_my_methods:
-            out += str("\n{}".format(x))
-            out += str("\n")
+            out += str("{}".format(x))
+            out += str("\n\n")
         return out
 
 
-# Sarah Ball's code - Modified by Liam + Matt for compatibility with tab escape characters.
+"""
+Sarah Ball's code - Modified by Liam + Matt
+for compatibility with PEP8
+"""
+
+
 class Attribute:
     def __init__(self, new_name, new_return):
         self.name = new_name
         self._return = new_return
 
     def __str__(self):
-        return f"\t{self.name}= {self._return}"
+        return f"    {self.name}= {self._return}"
 
 
-# Sarah Ball's code - Modified by Liam + Matt for compatibility with tab escape characters.
+"""
+Sarah Ball's code - Modified by Liam + Matt
+for compatibility with PEP8
+"""
+
+
 class Method:
     def __init__(self, new_name, new_return):
         self.name = new_name.replace("()", "")
         self._return = new_return
 
     def __str__(self):
-        return f"\t{self.name}(self):\n\t\tpass"
+        return f"    def {self.name}(self):\n        pass"

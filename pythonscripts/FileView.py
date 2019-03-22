@@ -1,21 +1,32 @@
 # Made by Matt - does console output related statements.
+# Code passes the PEP8 Check.
+
+
 class FileView:
     def __init__(self):
-        pass
+        self.error_message = "==========ERROR=========="
 
     def general_error(self):
-        print("==========ERROR==========")
+        print(self.error_message)
 
-    def plantuml_error(self):
+    @staticmethod
+    def plantuml_error():
         print("File not in PlantUML Syntax! Program Stopping..")
 
-    def plantuml_classes_not_found(self):
+    @staticmethod
+    def plantuml_converting():
+        print("Converting file to python syntax..")
+
+    @staticmethod
+    def plantuml_classes_not_found():
         print("Classes not found! Exiting..")
 
-    def file_error(self):
+    @staticmethod
+    def file_error():
         print("")
 
-    def file_accepted(self):
+    @staticmethod
+    def file_accepted():
         print("File Accepted.. Continuing..")
 
     @staticmethod

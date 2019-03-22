@@ -1,3 +1,4 @@
+# Code passes the PEP8 Check.
 import sqlite3
 
 conn = sqlite3.connect('assignment.db')

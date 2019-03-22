@@ -1,3 +1,5 @@
+# Code passes the PEP8 check.
+
 # Ignore errors here.
 from FileHandler import FileConverter
 from FileView import FileView
@@ -36,7 +38,7 @@ class FileController:
                         self.read_file("./Graph.txt")
                 except FileNotFoundError as f:
                     print("File not found! There must be a "
-                          "Graph.txt in the root directory!" + f)
+                          "Graph.txt in the root directory!" + str(f))
             elif self.command == "load":
                 if file_location.endswith(".txt"):
                     try:
@@ -94,24 +96,22 @@ class FileController:
                           "Expected Syntax: lload {filename.txt}")
 
         except SyntaxError as s:
-            print("Syntax Error:" + s)
+            print("Syntax Error:" + str(s))
         except TabError as t:
-            print("Please remove tabs from your command." + t)
+            print("Please remove tabs from your command." + str(t))
         except ValueError as v:
-            print("Please use the correct command syntax" + v)
+            print("Please use the correct command syntax" + str(v))
         except FileNotFoundError as f:
-            print("File not found." + f)
+            print("File not found." + str(f))
 
     # Reads file - Liam
     def read_file(self, filename):
         fconv.read_file(filename)
-        # @Liam - you missed this ;)
         fconv.convert_file()
         fconv.return_program()
-
-        # need to fix below here now. - somewhere in the filehandler it isn't sending back.
         self.data = fconv.codeToText
         fw.write_file(self.data, "Output.txt")
+        fw.write_file(self.data, "Output.py")
 
     # Liam
     def print_file(self):
@@ -127,11 +127,13 @@ class FileController:
         pass
 
     # Matthew
-    def view_help(self):
+    @staticmethod
+    def view_help():
         fv.print_help()
 
     # Matthew
-    def output(self, message):
+    @staticmethod
+    def output(message):
         if message == "e":
             fv.general_error()
         fv.output(message)

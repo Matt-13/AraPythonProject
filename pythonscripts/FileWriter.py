@@ -1,6 +1,9 @@
+# Code passes the PEP8 check.
+
+
 class FileWriter:
     def __init__(self):
-       pass
+        pass
 
     @staticmethod
     def write_file(code, file_name):
