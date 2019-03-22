@@ -11,7 +11,7 @@ fv = FileView()
 class FileController:
     def __init__(self):
         self.command = ''
-        self.data = ''
+        self.data = 'empty'
         self.file_location = ''
 
     def display(self):
@@ -118,8 +118,9 @@ class FileController:
     def print_file(self):
         fv.display_graph_code(self.data)
 
-    def save_file(self):
-        fw.write_file(self.data, "Output.txt")
+    def save_file(self, file_name):
+        fw.write_file(self.data, file_name)
+        print(self.data)
 
     # Not sure if needed! - Matthew
     def quit(self):

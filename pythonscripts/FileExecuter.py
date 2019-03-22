@@ -19,13 +19,22 @@ def main(argv):
             print("\nNo arguments entered.. "
                   "Continuing with defaults.")
             fc.handle_command('', '')
-            print_to_screen()
+            #print_to_screen()
         if len(sys.argv) > 3:
             print("\nToo many arguments entered. "
                   "Please enter at most 2.")
         else:
             if str(sys.argv[1]) == "help":
                 fc.view_help()
+
+            if str(sys.argv[1]) == "save":
+                if len(sys.argv) == 2:
+                    print("\n=======ERROR=======\n"
+                          "Load requires a file to save to.\n"
+                          "Syntax: save {file.txt}")
+                else:
+                    fc.save_file(sys.argv[2])
+
             elif str(sys.argv[1]) == "load":
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\n"
@@ -55,7 +64,7 @@ def print_to_screen():
 
     their_answer = input("Would you like to save the code to Output.txt y/n: ")
     if their_answer == "y":
-        fc.save_file()
+        fc.save_file("Output.txt")
 
 
 if __name__ == "__main__":
