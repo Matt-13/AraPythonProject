@@ -113,8 +113,12 @@ class FileController:
 
         # need to fix below here now. - somewhere in the filehandler it isn't sending back.
         self.data = fcon.codeToText
-        print(self.data)
         fw.write_file(self.data, "Output.txt")
+
+    def print_file(self):
+        fv.display_graph_code(self.data)
+
+
 
     # Not sure if needed! - Matthew
     def quit(self):

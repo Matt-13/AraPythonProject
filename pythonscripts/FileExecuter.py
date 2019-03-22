@@ -1,12 +1,15 @@
 # Ignore errors below this line.
 import sys
 from FileController import FileController
-
+from FileView import FileView
 
 # Execute code here
 # Matthew Whitaker's code.
+fc = FileController()
+
+
 def main(argv):
-    fc = FileController()
+
     # For Debugging Sys.Argv
     # print('Number of arguments:', len(sys.argv), 'arguments.')
     # print('Argument List:', str(sys.argv))
@@ -16,6 +19,7 @@ def main(argv):
             print("\nNo arguments entered.. "
                   "Continuing with defaults.")
             fc.handle_command('', '')
+            print_to_screen()
         if len(sys.argv) > 3:
             print("\nToo many arguments entered. "
                   "Please enter at most 2.")
@@ -44,9 +48,12 @@ def main(argv):
         pass
 
 
-def print_to_screen(yesno):
-    # if yesno == "y" or yesno == "yes":
-    pass
+def print_to_screen():
+    their_answer = input("Would you like to print the code to the screen? y/n: ")
+    if their_answer == "y":
+        fc.print_file()
+
+
 
 
 if __name__ == "__main__":
