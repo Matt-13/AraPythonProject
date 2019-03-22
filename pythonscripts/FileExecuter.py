@@ -53,7 +53,9 @@ def print_to_screen():
     if their_answer == "y":
         fc.print_file()
 
-
+    their_answer = input("Would you like to save the code to Output.txt y/n: ")
+    if their_answer == "y":
+        fc.save_file()
 
 
 if __name__ == "__main__":

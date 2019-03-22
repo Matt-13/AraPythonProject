@@ -118,7 +118,8 @@ class FileController:
     def print_file(self):
         fv.display_graph_code(self.data)
 
-
+    def save_file(self):
+        fw.write_file(self.data, "Output.txt")
 
     # Not sure if needed! - Matthew
     def quit(self):
