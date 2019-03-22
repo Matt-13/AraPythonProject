@@ -100,7 +100,7 @@ class ConvertPlantUML:
         self.codeToText += out
 
         # text_file = open("Output.txt", "w")
-        return self.codeToText
+       # return self.codeToText
 
 
     def read_file(self, file):
@@ -188,8 +188,8 @@ class FileWriter:
     @staticmethod
     def write_file(code, file_name):
         text_file = open(str(file_name), "w")
-        print(code)
-        text_file.write(str(code))
+        #print(code)
+        text_file.write(code)
         text_file.close()
 
 

@@ -1,0 +1,35 @@
+class FileController:
+
+
+ 	command = String	def __init__(self):		pass	display(self):
+		pass	handle_command(self):
+		pass	read_file(self):
+		pass	quit(self):
+		pass	validate(self):
+		pass	view_help(self):
+		pass
+class FileVerifier:
+
+
+ 	theData = String	def __init__(self):		pass	file_validate(self):
+		pass
+class FileReader:
+
+
+ 	file = String
+ 	contents = String	def __init__(self):		pass	add_file(self):
+		pass	open_file(self):
+		pass	read_data(self):
+		pass
+class FileView:
+
+	def __init__(self):		pass	display_graph_code(self):
+		pass
+class FileWriter:
+
+	def __init__(self):		pass	write_file(self):
+		pass
+class FileExecuter:
+
+	def __init__(self):		pass	main(self):
+		pass

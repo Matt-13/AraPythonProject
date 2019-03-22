@@ -32,6 +32,7 @@ class FileConverter:
         out = ""
         for x in self.converted_classes:
             out += (x.return_class())
+            print(x.return_class())
         self.codeToText += out
         print(out)
 
@@ -40,7 +41,8 @@ class FileConverter:
             data = filename.read()
         rduml = FileReader(data)
         self.classes = rduml.find_classes()
-        self.print_program()
+        #self.return_program()
+        print(self.codeToText + "test")
 
 
 fc = FileConverter()

@@ -109,6 +109,7 @@ class FileController:
         fcon.read_file(filename)
         # @Liam - you missed this ;)
         fcon.convert_file()
+        fcon.return_program()
         # need to fix below here now. - somewhere in the filehandler it isn't sending back.
         self.data = fcon.codeToText
         print(self.data)
