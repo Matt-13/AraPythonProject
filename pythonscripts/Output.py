@@ -1,8 +1,8 @@
-# File generated & created on: 2019-03-23 15:23:30.056373
+# File generated & created on: 2019-03-23 16:59:17.072755
 # File passes the PEP8 check.
 
 
-class FileController:
+class GraphInterpreter:
 
     command = 'String'
 

@@ -98,9 +98,10 @@ class FileReader:
             if isplantuml:
                 fv.fr_file_accepted()
                 value = self.count_occurrences("class", self.code)
+                print(value)
 
                 for i in range(0, value):
-                    self.allMyClasses.append(self.code.split("class")[i + 1])
+                    self.allMyClasses.append(self.code.split("}\nclass")[i])
 
                 return self.allMyClasses
             else:
