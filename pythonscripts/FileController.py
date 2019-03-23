@@ -99,9 +99,8 @@ class FileController:
 
     # Liam
     def save_file(self, file_name):
-        self.data = get_code()
+        self.data = get_code(5)
         fw.write_file(self.data, file_name)
-
         print(self.data)
 
     # Matthew

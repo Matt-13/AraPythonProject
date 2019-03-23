@@ -26,13 +26,15 @@ def data_entry(code):
     out = ''
 
     cursor.execute("""INSERT INTO savedCode (code) values(?)""", (code,))
-    max_id = cursor.execute("""SELECT MAX(codeID) FROM savedCode""")
-   # """SELECT id FROM tickets WHERE "Status" = 'Pending'"""
+    cursor.execute("""SELECT MAX(codeID) FROM savedCode""")
+    max_id = cursor.fetchone()[0]
+
     print(max_id)
-    #identification = cursor.execute("SELECT codeID FROM savedCode WHERE codeID = (?)", (max_id,))
-    #time_stamp = cursor.execute("SELECT timeStamp FROM savedCode WHERE codeID = (?)", (max_id,))
-    identification = cursor.execute("SELECT codeID FROM savedCode WHERE codeID = 1")
-    time_stamp = cursor.execute("SELECT timeStamp FROM savedCode WHERE codeID = 1")
+    cursor.execute("SELECT codeID FROM savedCode WHERE codeID = (?)", (max_id,))
+    identification = cursor.fetchone()[0]
+    cursor.execute("SELECT timeStamp FROM savedCode WHERE codeID = (?)", (max_id,))
+    time_stamp = cursor.fetchone()[0]
+
     out += "Successfully Submitted to database: \n"
     out += "\tID = {}\n".format(identification)
     out += "\tTimeStamp = {}\n".format(str(time_stamp))
@@ -40,8 +42,9 @@ def data_entry(code):
     print(out)
 
 
-def get_code():
-    return cursor.execute("SELECT code FROM savedCode WHERE codeID = 1")
+def get_code(code_id):
+    cursor.execute("SELECT code FROM savedCode WHERE codeID = (?)", (code_id,))
+    return cursor.fetchone()[0]
 
 
 conn.commit()
