@@ -5,6 +5,7 @@ import sys
 # sys.argv[2] - import command line args.
 from sys import *
 
+
 # FileReader Example
 class ReadPlantUML:
     def __init__(self, filename):
@@ -68,6 +69,7 @@ class ConvertPlantUML:
         self.convertedclasses =[]
 
         self.codeToText = ""
+
     def convert_file(self):
         print("Converting file to python syntax..")
         for class_info in self.classes:
@@ -90,7 +92,7 @@ class ConvertPlantUML:
 
     def print_program(self):
         for x in self.convertedclasses:
-            #print(str(x))
+            # print(str(x))
             x.print_class()
 
     def return_program(self):
@@ -100,8 +102,7 @@ class ConvertPlantUML:
         self.codeToText += out
 
         # text_file = open("Output.txt", "w")
-       # return self.codeToText
-
+        # return self.codeToText
 
     def read_file(self, file):
         with open(file, "r") as filename:
@@ -188,7 +189,7 @@ class FileWriter:
     @staticmethod
     def write_file(code, file_name):
         text_file = open(str(file_name), "w")
-        #print(code)
+        # print(code)
         text_file.write(code)
         text_file.close()
 

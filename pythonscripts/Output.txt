@@ -1,10 +1,10 @@
-# File generated & created on: 2019-03-23 11:28:05.844810
+# File generated & created on: 2019-03-23 13:12:48.174245
 # File passes the PEP8 check.
 
 
 class FileController:
 
-    command = String
+    command = 'String'
 
     def __init__(self):
         pass
@@ -30,7 +30,7 @@ class FileController:
 
 class FileVerifier:
 
-    theData = String
+    theData = 'String'
 
     def __init__(self):
         pass
@@ -41,8 +41,8 @@ class FileVerifier:
 
 class FileReader:
 
-    file = String
-    contents = String
+    file = 'String'
+    contents = 'String'
 
     def __init__(self):
         pass

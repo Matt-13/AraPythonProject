@@ -1,13 +1,32 @@
 # Made by Matt - does console output related statements.
 # Code passes the PEP8 Check.
+import os
 
 
 class FileView:
     def __init__(self):
-        self.error_message = "==========ERROR=========="
+        self.error_message = "\n==========ERROR=========="
 
     def general_error(self):
         print(self.error_message)
+
+    @staticmethod
+    def defaults(file_location):
+        print("Command not entered. Looking for a "
+              "Graph.txt in root directory, "
+              "and directory above... ")
+        print("Looking in: {} {}"
+              .format(os.path.abspath(file_location),
+                      "and directory above."))
+
+    @staticmethod
+    def file_found():
+        print("\nFile Found! Reading..\n")
+
+    @staticmethod
+    def file_not_found(f):
+        print("File not found! There must be a "
+              "Graph.txt in the root directory!" + str(f))
 
     @staticmethod
     def plantuml_error():
@@ -44,11 +63,15 @@ class FileView:
         print("Command syntax: FileExecuter.py {optionalcommand}")
         print("")
         print("HELP.........................."
-              "................Displays this help page")
-        print("LOAD {filename}..............."
+              "...........................Displays this help page")
+        print("LOAD {filename.txt}......................"
               "...Loads a file from the root directory")
-        print("LLOAD {path_to_filename}......"
+        print("ABSLOAD {path_to_file\\filename.txt}......"
               ".....Loads a file from an absolute path")
+
+    @staticmethod
+    def file_written(file):
+        print("\nFile(s) Successfully Written to Disk: " + file)
 
     @staticmethod
     def output(message):

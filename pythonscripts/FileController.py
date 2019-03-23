@@ -1,9 +1,9 @@
 # Code passes the PEP8 check.
 
 # Ignore errors here.
-from FileHandler import FileConverter
-from FileView import FileView
-from FileWriter import FileWriter
+from pythonscripts.FileHandler import FileConverter
+from pythonscripts.FileView import FileView
+from pythonscripts.FileWriter import  FileWriter
 import os
 
 fconv = FileConverter()
@@ -23,22 +23,19 @@ class FileController:
         self.command = cmd
         try:
             if self.command == "":
-                print("Command not entered. Looking for a "
-                      "Graph.txt in root directory, "
-                      "and directory above... ")
-                print("Looking in: {} {}"
-                      .format(os.path.abspath(file_location),
-                              "and directory above."))
+                fv.defaults(file_location)
                 try:
                     if os.path.isfile("../Graph.txt"):
-                        print("\nFile Found! Reading..\n")
+                        fv.file_found()
                         self.read_file("../Graph.txt")
                     elif os.path.isfile("./Graph.txt"):
-                        print("\nFile Found! Reading..\n")
+                        fv.file_found()
                         self.read_file("./Graph.txt")
-                except FileNotFoundError as f:
-                    print("File not found! There must be a "
-                          "Graph.txt in the root directory!" + str(f))
+                    else:
+                        fv.general_error()
+                        fv.file_not_found(file_location)
+                except Exception as e:
+                    pass
             elif self.command == "load":
                 if file_location.endswith(".txt"):
                     try:
@@ -68,7 +65,7 @@ class FileController:
                     print("\n==========ERROR==========\n"
                           "Syntax Error\n"
                           "Expected Syntax: load {filename.txt}")
-            elif self.command == "lload":
+            elif self.command == "absload":
                 if file_location.endswith(".txt"):
                     try:
                         if os.path.isfile("{}".format(file_location)):
@@ -89,11 +86,11 @@ class FileController:
                               "{}".format(p))
                 elif file_location == "":
                     print("No filename entered.\n"
-                          "Expected Syntax: lload {filename.txt}")
+                          "Expected Syntax: absload {path_to_file\\filename.txt}")
                 else:
                     print("\n==========ERROR==========\n"
                           "File Type Error - File must end in .txt!\n"
-                          "Expected Syntax: lload {filename.txt}")
+                          "Expected Syntax: absload {path_to_file\\filename.txt}")
 
         except SyntaxError as s:
             print("Syntax Error:" + str(s))
@@ -112,6 +109,7 @@ class FileController:
         self.data = fconv.codeToText
         fw.write_file(self.data, "Output.txt")
         fw.write_file(self.data, "Output.py")
+        fv.file_written("Output.txt, Output.py")
 
     # Liam
     def print_file(self):
@@ -133,7 +131,6 @@ class FileController:
 
     # Matthew
     @staticmethod
-    def output(message):
-        if message == "e":
-            fv.general_error()
+    def output_error(message):
+        fv.general_error()
         fv.output(message)

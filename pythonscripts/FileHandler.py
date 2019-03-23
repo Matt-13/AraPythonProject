@@ -6,7 +6,7 @@
 # Code passes the PEP8 Check.
 
 import datetime
-from FileView import FileView
+from pythonscripts.FileView import FileView
 fv = FileView()
 
 
@@ -87,7 +87,7 @@ class FileReader:
             if sentence.lower().split().count(word) > 0:
                 return sentence.lower().split().count(word)
             elif sentence.lower().split().count(word) == 0:
-                print("Classes not found.")
+                fv.plantuml_classes_not_found()
         except Exception as e:
             print(e)
 
@@ -96,7 +96,7 @@ class FileReader:
         try:
             isplantuml = self.check_if_plantuml(self.code)
             if isplantuml:
-                print("File Accepted! Continuing..")
+                fv.file_accepted()
                 value = self.count_occurrences("class", self.code)
 
                 for i in range(0, value):
@@ -104,7 +104,7 @@ class FileReader:
 
                 return self.allMyClasses
             else:
-                print("File not in PlantUML Syntax! Program Stopping..")
+                fv.plantuml_error()
         except Exception as e:
             print(e)
 
@@ -185,7 +185,7 @@ class Attribute:
         self._return = new_return
 
     def __str__(self):
-        return f"    {self.name}= {self._return}"
+        return f"    {self.name}= '{self._return}'"
 
 
 """

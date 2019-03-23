@@ -1,6 +1,6 @@
 # Ignore errors below this line.
 import sys
-from FileController import FileController
+from pythonscripts.FileController import FileController
 # from FileView import FileView
 
 # Execute code here
@@ -41,13 +41,13 @@ def main(argv):
                           "Syntax: load {file.txt}")
                 else:
                     fc.handle_command("load", str(sys.argv[2]))
-            elif str(sys.argv[1] == "lload"):
+            elif str(sys.argv[1] == "absload"):
                 if len(sys.argv) == 2:
                     print("\n=======ERROR=======\n"
-                          "Lload requires a file to load.\n"
-                          "Syntax: lload {path_to_file.txt}")
+                          "absload requires a file to load.\n"
+                          "Syntax: absload {path_to_file\\filename.txt}")
                 if "\\" in str(sys.argv[2]):
-                    fc.handle_command("lload", str(sys.argv[2]))
+                    fc.handle_command("absload", str(sys.argv[2]))
                 else:
                     print("Path must be an absolute path.")
     # Ignores issues with Sys.argv

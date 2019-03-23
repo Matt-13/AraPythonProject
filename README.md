@@ -17,8 +17,8 @@ Python Project for Ara Sem 1 2019
 ### Command Line Parameters
 
 1. HELP Displays this help page
-2. LOAD {filename} Loads a file from the root directory - Will look in the Current Execution Directory (Use CMD CD command to change the directory- otherwise it will look in C:\Windows\System32 or %userprofile%)
-3. LLOAD {path_to_filename} Loads a file from an absolute path - LLOAD Stands for "Long Load" from a long absolute path.
+2. LOAD {filename\filename.txt} Loads a file from the root directory - Will look in the Current Execution Directory (Use CMD CD command to change the directory- otherwise it will look in C:\Windows\System32 or %userprofile%)
+3. ABSLOAD {path_to_filename\filename.txt} Loads a file from an absolute path - ABSLOAD Stands for "Absolute Load" from a long absolute path.
 
 4. ....
 5. May add more.
