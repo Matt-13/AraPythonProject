@@ -26,14 +26,19 @@ def main(argv):
         else:
             if command == "help":
                 fc.view_help()
-
+            # Liam's save and load commands
             elif command == "save":
                 if len(sys.argv) == 2:
                     fv.general_error()
                     fv.fe_command_syntax("Save")
                 else:
                     fc.save_file(sys.argv[2])
-
+            elif command == "loadcode":
+                if len(sys.argv) == 2:
+                    fv.general_error()
+                   # fv.fe_command_syntax("Save")
+                else:
+                    fc.load_code(sys.argv[2])
             elif command == "load":
                 if len(sys.argv) == 2:
                     fv.general_error()

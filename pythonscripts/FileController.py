@@ -103,6 +103,16 @@ class FileController:
         fw.write_file(self.data, file_name)
         print(self.data)
 
+    # Liam
+    def load_code(self, code_id):
+        return_bool, code = get_code(code_id)
+        if return_bool:
+            self.data = code
+            print("Code has loaded successfully")
+        else:
+            print("ERROR: code failed to load:")
+            print('\t' + code)
+
     # Matthew
     def quit(self):
         pass

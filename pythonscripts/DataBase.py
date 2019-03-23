@@ -1,4 +1,5 @@
 # Code passes the PEP8 Check.
+# Created by Liam Brydon
 import sqlite3
 
 conn = sqlite3.connect('assignment.db')
@@ -43,8 +44,13 @@ def data_entry(code):
 
 
 def get_code(code_id):
-    cursor.execute("SELECT code FROM savedCode WHERE codeID = (?)", (code_id,))
-    return cursor.fetchone()[0]
+    cursor.execute("""SELECT MAX(codeID) FROM savedCode""")
+    max_id = cursor.fetchone()[0]
+    if int(code_id) >= max_id:
+        return False, "ID doesnt exists in table"
+    else:
+        cursor.execute("SELECT code FROM savedCode WHERE codeID = (?)", (code_id,))
+        return True, cursor.fetchone()[0]
 
 
 conn.commit()
