@@ -5,6 +5,7 @@ from pythonscripts.FileHandler import FileConverter
 from pythonscripts.FileView import FileView
 from pythonscripts.FileWriter import  FileWriter
 import os
+from pythonscripts.DataBase import *
 
 fconv = FileConverter()
 fw = FileWriter()
@@ -88,7 +89,9 @@ class FileController:
         self.data = fconv.codeToText
         fw.write_file(self.data, "Output.txt")
         fw.write_file(self.data, "Output.py")
-        fv.file_written("Output.txt, Output.py")
+        create_table()
+        data_entry(self.data)
+        #fv.file_written("Output.txt, Output.py")
 
     # Liam
     def print_file(self):
@@ -96,7 +99,9 @@ class FileController:
 
     # Liam
     def save_file(self, file_name):
+        self.data = get_code()
         fw.write_file(self.data, file_name)
+
         print(self.data)
 
     # Matthew

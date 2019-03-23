@@ -1,4 +1,4 @@
-# File generated & created on: 2019-03-23 17:00:59.209498
+# File generated & created on: 2019-03-24 11:02:59.602261
 # File passes the PEP8 check.
 
 
@@ -105,6 +105,9 @@ class ClassBuilder:
 
 class Attribute:
 
+    name = 'Object'
+    _return = 'Object'
+
     def __init__(self):
         pass
 
@@ -113,6 +116,9 @@ class Attribute:
 
 
 class Method:
+
+    name = 'Object'
+    _return = 'Object'
 
     def __init__(self):
         pass
