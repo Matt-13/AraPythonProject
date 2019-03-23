@@ -18,7 +18,7 @@ class FileConverter:
 
     # Made by Sarah - Modified by Matt
     def convert_file(self):
-        fv.plantuml_converting()
+        fv.fc_plantuml_converting()
         for class_info in self.classes:
             class_name = class_info.split(' ')[1]
             attributes = []
@@ -87,7 +87,7 @@ class FileReader:
             if sentence.lower().split().count(word) > 0:
                 return sentence.lower().split().count(word)
             elif sentence.lower().split().count(word) == 0:
-                fv.plantuml_classes_not_found()
+                fv.fr_plantuml_classes_not_found()
         except Exception as e:
             print(e)
 
@@ -96,7 +96,7 @@ class FileReader:
         try:
             isplantuml = self.check_if_plantuml(self.code)
             if isplantuml:
-                fv.file_accepted()
+                fv.fr_file_accepted()
                 value = self.count_occurrences("class", self.code)
 
                 for i in range(0, value):
@@ -104,7 +104,7 @@ class FileReader:
 
                 return self.allMyClasses
             else:
-                fv.plantuml_error()
+                fv.fr_plantuml_error()
         except Exception as e:
             print(e)
 

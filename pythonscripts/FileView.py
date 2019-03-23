@@ -4,50 +4,14 @@ import os
 
 
 class FileView:
+    # File Handler and FileController Methods
     def __init__(self):
-        self.error_message = "\n==========ERROR=========="
+        self.error_message = "\n==========ERROR==========\n"
 
     def general_error(self):
         print(self.error_message)
 
-    @staticmethod
-    def defaults(file_location):
-        print("Command not entered. Looking for a "
-              "Graph.txt in root directory, "
-              "and directory above... ")
-        print("Looking in: {} {}"
-              .format(os.path.abspath(file_location),
-                      "and directory above."))
-
-    @staticmethod
-    def file_found():
-        print("\nFile Found! Reading..\n")
-
-    @staticmethod
-    def file_not_found(f):
-        print("File not found! There must be a "
-              "Graph.txt in the root directory!" + str(f))
-
-    @staticmethod
-    def plantuml_error():
-        print("File not in PlantUML Syntax! Program Stopping..")
-
-    @staticmethod
-    def plantuml_converting():
-        print("Converting file to python syntax..")
-
-    @staticmethod
-    def plantuml_classes_not_found():
-        print("Classes not found! Exiting..")
-
-    @staticmethod
-    def file_error():
-        print("")
-
-    @staticmethod
-    def file_accepted():
-        print("File Accepted.. Continuing..")
-
+    # File Controller Methods
     @staticmethod
     def print_help():
         print("\n\n")
@@ -70,9 +34,110 @@ class FileView:
               ".....Loads a file from an absolute path")
 
     @staticmethod
-    def file_written(file):
-        print("\nFile(s) Successfully Written to Disk: " + file)
+    def fc_defaults(file_location):
+        print("Command not entered. Looking for a "
+              "Graph.txt in root directory, "
+              "and directory above... ")
+        print("Looking in: {} {}"
+              .format(os.path.abspath(file_location),
+                      "and directory above."))
 
+    @staticmethod
+    def fc_file_found():
+        print("\nFile Found! Reading..\n")
+
+    @staticmethod
+    def fc_file_not_found(file_location, directory, command):
+        if directory == "r":
+            print("File not found! There must be a "
+                  "{}.txt in the root directory!"
+                  .format(file_location))
+        elif directory == "a":
+            print("File not found! There must be a "
+                  "{}.txt in the chosen directory!"
+                  .format(file_location))
+        elif directory == "":
+            if command == "load":
+                print("No filename entered.\n"
+                      "Expected Syntax: load {filename.txt}")
+            elif command == "absload":
+                print("No filename entered.\n"
+                      "Expected Syntax: "
+                      "absload {path_to_file\\filename.txt}")
+
+    @staticmethod
+    def fc_syntax_error(command):
+        if command == "load":
+            print("Syntax Error\n"
+                  "Expected Syntax: load {filename.txt}")
+        elif command == "absload":
+            print("File Type Error - File must end in .txt!\n"
+                  "Expected Syntax: absload "
+                  "{path_to_file\\filename.txt}")
+
+    @staticmethod
+    def fc_permission_error():
+        print("File permission error! "
+              "Make sure you have the "
+              "correct read permission on the file")
+
+    @staticmethod
+    def fc_load_file_error(file_location):
+        print("File not found! '{}'"
+              .format(os.path.abspath(file_location)))
+    # File Handler Methods
+    # File Converter Methods
+
+    @staticmethod
+    def fc_plantuml_converting():
+        print("Converting file to python syntax..")
+
+    # File Reader Methods
+    @staticmethod
+    def fr_plantuml_classes_not_found():
+        print("Classes not found! Exiting..")
+
+    @staticmethod
+    def fr_file_accepted():
+        print("File Accepted.. Continuing..")
+
+    @staticmethod
+    def file_written(file):
+        print("\nFile(s) Successfully Written to Disk: "
+              + file)
+
+    @staticmethod
+    def fr_plantuml_error():
+        print("File not in PlantUML Syntax! "
+              "Program Stopping..")
+
+    # File Executer Methods
+    @staticmethod
+    def fe_defaults():
+        print("\nNo arguments entered.. "
+              "Continuing with defaults.")
+
+    @staticmethod
+    def fe_too_many_args():
+        print("\nToo many arguments entered. "
+              "Please enter at most 2.")
+
+    @staticmethod
+    def fe_command_syntax(name):
+        print("{} requires a filename to {} with\n"
+              "Syntax: {} [filename.txt]"
+              .format(name, str(name).lower(), name))
+
+    @staticmethod
+    def fe_abs_syntax():
+        print("absload requires a file to load.\n"
+              "Syntax: absload {path_to_file\\filename.txt}")
+
+    @staticmethod
+    def fe_abs_path_error():
+        print("Path must be an absolute path.")
+
+    # Other Methods
     @staticmethod
     def output(message):
         print(str(message))
@@ -80,3 +145,7 @@ class FileView:
     @staticmethod
     def display_graph_code(code):
         print(code)
+
+    @staticmethod
+    def file_error():
+        print("")

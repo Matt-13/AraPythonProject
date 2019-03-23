@@ -1,10 +1,11 @@
 # Ignore errors below this line.
 import sys
 from pythonscripts.FileController import FileController
-# from FileView import FileView
+from pythonscripts.FileView import FileView
 
 # Execute code here
 # Matthew Whitaker's code.
+fv = FileView()
 fc = FileController()
 
 
@@ -13,43 +14,44 @@ def main(argv):
     # For Debugging Sys.Argv
     # print('Number of arguments:', len(sys.argv), 'arguments.')
     # print('Argument List:', str(sys.argv))
+    if len(sys.argv) >= 2:
+        command = str(sys.argv[1]).lower()
     try:
         if len(sys.argv) < 2:
-            print("\nNo arguments entered.. "
-                  "Continuing with defaults.")
+            fv.fe_defaults()
             fc.handle_command('', '')
             # print_to_screen()
-        if len(sys.argv) > 3:
-            print("\nToo many arguments entered. "
-                  "Please enter at most 2.")
+        elif len(sys.argv) > 3:
+            fv.fe_too_many_args()
         else:
-            if str(sys.argv[1]) == "help":
+            if command == "help":
                 fc.view_help()
 
-            elif str(sys.argv[1]) == "save":
+            elif command == "save":
                 if len(sys.argv) == 2:
-                    print("\n=======ERROR=======\n"
-                          "Load requires a file to save to.\n"
-                          "Syntax: save {file.txt}")
+                    fv.general_error()
+                    fv.fe_command_syntax("Save")
                 else:
                     fc.save_file(sys.argv[2])
 
-            elif str(sys.argv[1]) == "load":
+            elif command == "load":
                 if len(sys.argv) == 2:
-                    print("\n=======ERROR=======\n"
-                          "Load requires a file to load.\n"
-                          "Syntax: load {file.txt}")
+                    fv.general_error()
+                    fv.fe_command_syntax("Load")
                 else:
                     fc.handle_command("load", str(sys.argv[2]))
-            elif str(sys.argv[1] == "absload"):
+            elif command == "absload":
                 if len(sys.argv) == 2:
-                    print("\n=======ERROR=======\n"
-                          "absload requires a file to load.\n"
-                          "Syntax: absload {path_to_file\\filename.txt}")
+                    fv.general_error()
+                    fv.fe_abs_syntax()
                 if "\\" in str(sys.argv[2]):
                     fc.handle_command("absload", str(sys.argv[2]))
                 else:
-                    print("Path must be an absolute path.")
+                    fv.general_error()
+                    fv.fe_abs_path_error()
+            else:
+                fv.general_error()
+                fv.output("Command not found!")
     # Ignores issues with Sys.argv
     except IndexError:
         pass

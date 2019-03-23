@@ -1,0 +1,98 @@
+@startuml
+package GraphInterpreter {
+class FileController {
+command : String
+data : String
+file_location : String
+display()
+handle_command()
+read_file()
+print_file()
+save_file()
+quit()
+view_help()
+output_error()
+}
+class FileConverter {
+classes : ArrayObject
+converted_classes : ArrayObject
+codeToText : String
+convert_file()
+add_class()
+print_program()
+return_program()
+read_file()
+}
+class FileReader {
+allMyClasses : ArrayObject
+code : String
+check_if_plantuml()
+count_occurences()
+find_classes()
+}
+class ClassBuilder {
+name : Object
+attributes : Object
+methods : Object
+all_my_attributes : ArrayObject
+all_my_methods : ArrayObject
+add_class_attributes()
+add_class_methods()
+print_class()
+return_class()
+}
+class Attribute {
+name = Object
+_return = Object
+__str__()
+}
+class Method {
+name = Object
+_return = Object
+__str__()
+}
+class FileView {
+error_message : String
+fc_defaults()
+fc_file_found()
+fc_file_not_found()
+fc_syntax_error()
+fc_permission_error()
+fc_load_file_error()
+fc_plantuml_converting()
+fc_plantuml_classes_not_found()
+fr_file_accepted()
+fr_plantuml_error()
+file_written()
+fe_defaults()
+fe_too_many_args()
+fe_command_syntax()
+fe_abs_syntax()
+fe_abs_path_error()
+output()
+general_error()
+print_help()
+display_graph_code()
+file_error()
+}
+class FileWriter {
+write_file()
+}
+class FileExecuter {
+command : String
+main()
+print_to_screen()
+}
+FileController *-- "Reads command and Sends file to" FileConverter
+FileController *-- "Updates user with" FileView
+FileConverter *-- "Loads file with" FileReader
+FileReader o- "Updates user with" FileView
+FileController o- "Writes file with" FileWriter
+FileExecuter --> "Starts the" FileController
+FileConverter *-- "Builds classes with" ClassBuilder
+ClassBuilder *-- "Creates an" Attribute
+ClassBuilder *-- "Creates a" Method
+}
+
+
+@enduml
