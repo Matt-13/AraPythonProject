@@ -22,23 +22,43 @@ def main(argv):
             fc.handle_command('', '')
             # print_to_screen()
         elif len(sys.argv) > 3:
-            fv.fe_too_many_args()
+            # Liam's save command
+            if command == "save":
+                if len(sys.argv) == 2:
+                    fv.general_error()
+                    fv.fe_command_syntax("Save")
+                else:
+                    fc.save_file(sys.argv[2], sys.argv[3])
+            else:
+                fv.fe_too_many_args()
         else:
             if command == "help":
                 fc.view_help()
-            # Liam's save and load commands
+
+            # Liam's save command
             elif command == "save":
                 if len(sys.argv) == 2:
                     fv.general_error()
                     fv.fe_command_syntax("Save")
                 else:
-                    fc.save_file(sys.argv[2])
+                    fc.save_file(sys.argv[2], sys.argv[3])
+
+            # Liam's loadcode command
             elif command == "loadcode":
                 if len(sys.argv) == 2:
                     fv.general_error()
-                   # fv.fe_command_syntax("Save")
+                    fv.fe_loadcode_syntax("loadcode")
                 else:
                     fc.load_code(sys.argv[2])
+
+            # Liam's printcode command
+            elif command == "printcode":
+                if len(sys.argv) == 2:
+                    fv.general_error()
+                    fv.fe_loadcode_syntax("printcode")
+                else:
+                    fc.print_code(sys.argv[2])
+
             elif command == "load":
                 if len(sys.argv) == 2:
                     fv.general_error()
@@ -65,7 +85,7 @@ def main(argv):
         print("Permission Error!\n"
               "Check you have the permission to read the file!")
 
-
+# Liam
 def print_to_screen():
     their_answer = input("Would you like to print the code to the screen? y/n: ")
     if their_answer == "y":

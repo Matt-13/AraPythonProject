@@ -129,6 +129,13 @@ class FileView:
               .format(name, str(name).lower(), name))
 
     @staticmethod
+    def fe_loadcode_syntax(text):
+        print("{} requires the ID to know which code\n"
+              "to load within the database.\n"
+              "Syntax: {} [code_id]"
+              .format(text, text))
+
+    @staticmethod
     def fe_abs_syntax():
         print("absload requires a file to load.\n"
               "Syntax: absload {path_to_file\\filename.txt}")
@@ -145,6 +152,10 @@ class FileView:
     @staticmethod
     def display_graph_code(code):
         print(code)
+
+    @staticmethod
+    def display(data):
+        print(data)
 
     @staticmethod
     def file_error():

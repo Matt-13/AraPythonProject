@@ -98,20 +98,29 @@ class FileController:
         fv.display_graph_code(self.data)
 
     # Liam
-    def save_file(self, file_name):
-        self.data = get_code(5)
-        fw.write_file(self.data, file_name)
-        print(self.data)
+    def save_file(self, file_name, code_id):
+        self.data = get_code(code_id)
+
+        fw.write_file("hellow", "Output.txt")
 
     # Liam
     def load_code(self, code_id):
         return_bool, code = get_code(code_id)
         if return_bool:
             self.data = code
-            print("Code has loaded successfully")
+            fv.display("Code has loaded successfully")
         else:
-            print("ERROR: code failed to load:")
-            print('\t' + code)
+            fv.display("ERROR: code failed to load:")
+            fv.display('\t' + code)
+
+    # Liam
+    def print_code(self, code_id):
+        return_bool, code = get_code(code_id)
+        if return_bool:
+            fv.display_graph_code(code)
+        else:
+            fv.display("ERROR: code failed to load:")
+            fv.display('\t' + code)
 
     # Matthew
     def quit(self):

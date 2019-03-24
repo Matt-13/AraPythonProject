@@ -37,7 +37,7 @@ def data_entry(code):
     time_stamp = cursor.fetchone()[0]
 
     out += "Successfully Submitted to database: \n"
-    out += "\tID = {}\n".format(identification)
+    out += "\tID = {}\n".format(identification - 1)
     out += "\tTimeStamp = {}\n".format(str(time_stamp))
     conn.commit()
     print(out)
