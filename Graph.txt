@@ -1,5 +1,4 @@
 @startuml
-package GraphInterpreter {
 class FileController {
 command : String
 display()
@@ -35,7 +34,6 @@ FileVerifier *-- "Loads" FileReader
 FileReader o- "Updates" FileView
 FileView o- "Opens" FileWriter
 FileExecuter --> "Starts" FileController
-}
 
 
 @enduml

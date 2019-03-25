@@ -1,10 +1,11 @@
-# File generated & created on: 2019-03-25 15:48:47.003622
+# File generated & created on: 2019-03-25 15:58:21.243222
 # File passes the PEP8 check.
 
 
-class GraphInterpreter:
+class FileController:
 
-    command: str 
+    command: str
+    array: list
 
     def __init__(self):
         pass

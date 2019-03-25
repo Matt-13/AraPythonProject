@@ -191,6 +191,8 @@ class Attribute:
             return f"    {self.name}: str "
         elif self._return == "Integer":
             return f"    {self.name}: int "
+        elif self._return == "ArrayObject":
+            return f"    {self.name}: list "
 
 
 """
