@@ -82,4 +82,13 @@ command : String
 main()
 print_to_screen()
 }
+FileController *-- FileConverter
+FileController *-- FileView
+FileConverter *-- FileReader
+FileReader o- FileView
+FileController o- FileWriter
+FileExecuter --> FileController
+FileConverter *-- ClassBuilder
+ClassBuilder *-- Attribute
+ClassBuilder *-- Method
 @enduml
