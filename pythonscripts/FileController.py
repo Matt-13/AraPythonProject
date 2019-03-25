@@ -101,7 +101,7 @@ class FileController:
     def save_file(self, file_name, code_id):
         self.data = get_code(code_id)
 
-        fw.write_file("hellow", "Output.txt")
+        fw.write_file(get_code(code_id), file_name)
 
     # Liam
     def load_code(self, code_id):

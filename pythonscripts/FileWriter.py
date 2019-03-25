@@ -12,7 +12,7 @@ class FileWriter:
         #text_file.write("hello")
         #print(code, file_name)
 
-
-        with open('Output.txt', 'w') as text_file:
-            text_file.write("hello")
+        with open(str(file_name), 'w+') as text_file:
+            text_file.write(str(code))
+            #print(code)
             text_file.close()
