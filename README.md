@@ -20,8 +20,9 @@ Python Project for Ara Sem 1 2019
 2. LOAD {filename\filename.txt} Loads a file from the root directory - Will look in the Current Execution Directory (Use CMD CD command to change the directory- otherwise it will look in C:\Windows\System32 or %userprofile%)
 3. ABSLOAD {path_to_filename\filename.txt} Loads a file from an absolute path - ABSLOAD Stands for "Absolute Load" from a long absolute path.
 
-4. ....
-5. May add more.
+4. SAVE {filename.txt} {optional_code_id} Saves code from the DB to a file the user specifies. 
+5. LOADCODE {code_id} Saves the code to self.data from the database.
+6. PRINTCODE {code_id} Prints code from the database to the console window.
 
 ### General Usage
 
@@ -31,3 +32,4 @@ Python Project for Ara Sem 1 2019
 4. Files must be in .txt format.
 5. Graph Files must be in the pythonscripts folder (or directory above) - only if the load command/or defaults are used.
 6. Graph Files must be in PLANTUML format and begin with @plantuml and end with @enduml
+7. Program will not execute from a Network Directory or the root of C:/ Drive.
