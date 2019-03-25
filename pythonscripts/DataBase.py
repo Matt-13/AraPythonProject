@@ -1,11 +1,12 @@
 # Code passes the PEP8 Check.
 # Created by Liam Brydon
+
 import sqlite3
 
 conn = sqlite3.connect('assignment.db')
 
 try:
-    conn = sqlite3.connect("assignment.db")
+    conn
 except Exception as e:
     print(e)
 else:
@@ -46,11 +47,18 @@ def data_entry(code):
 def get_code(code_id):
     cursor.execute("""SELECT MAX(codeID) FROM savedCode""")
     max_id = cursor.fetchone()[0]
-    if int(code_id) >= max_id:
-        return False, "ID doesnt exists in table"
-    else:
-        cursor.execute("SELECT code FROM savedCode WHERE codeID = (?)", (code_id,))
-        return True, cursor.fetchone()[0]
+    try:
+        if int(code_id) >= max_id:
+            return False, "ID doesnt exists in table"
+        elif int(code_id) <= 0:
+            return False, "ID doesnt exists in table"
+        else:
+            cursor.execute("SELECT code FROM savedCode WHERE codeID = (?)", (code_id,))
+            return True, cursor.fetchone()[0]
+    except ValueError and TypeError:
+        print("Please enter an integer")
+    except Exception:
+        print("fuck off")
 
 
 conn.commit()

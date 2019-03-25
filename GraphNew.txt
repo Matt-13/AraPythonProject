@@ -83,15 +83,15 @@ command : String
 main()
 print_to_screen()
 }
-FileController *-- "Reads command and Sends file to" FileConverter
-FileController *-- "Updates user with" FileView
-FileConverter *-- "Loads file with" FileReader
-FileReader o- "Updates user with" FileView
-FileController o- "Writes file with" FileWriter
-FileExecuter --> "Starts the" FileController
-FileConverter *-- "Builds classes with" ClassBuilder
-ClassBuilder *-- "Creates an" Attribute
-ClassBuilder *-- "Creates a" Method
+FileController *-- FileConverter
+FileController *-- FileView
+FileConverter *-- FileReader
+FileReader o- FileView
+FileController o- FileWriter
+FileExecuter --> FileController
+FileConverter *-- ClassBuilder
+ClassBuilder *-- Attribute
+ClassBuilder *-- Method
 }
 
 

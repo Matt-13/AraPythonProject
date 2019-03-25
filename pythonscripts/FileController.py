@@ -100,8 +100,10 @@ class FileController:
     # Liam
     def save_file(self, file_name, code_id):
         self.data = get_code(code_id)
-
-        fw.write_file(get_code(code_id), file_name)
+        try:
+            fw.write_file(get_code(code_id), file_name)
+        except AttributeError as e:
+            print(e)
 
     # Liam
     def load_code(self, code_id):

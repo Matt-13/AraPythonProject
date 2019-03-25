@@ -1,1 +1,85 @@
-(True, "# File generated & created on: 2019-03-23 20:38:02.129717\n# File passes the PEP8 check.\n\n\nclass GraphInterpreter:\n\n    command = 'String'\n    data = 'String'\n    file_location = 'String'\n\n    def __init__(self):\n        pass\n\n    def display(self):\n        pass\n\n    def handle_command(self):\n        pass\n\n    def read_file(self):\n        pass\n\n    def print_file(self):\n        pass\n\n    def save_file(self):\n        pass\n\n    def quit(self):\n        pass\n\n    def view_help(self):\n        pass\n\n    def output_error(self):\n        pass\n\n\nclass FileConverter:\n\n    classes = 'ArrayObject'\n    converted_classes = 'ArrayObject'\n    codeToText = 'String'\n\n    def __init__(self):\n        pass\n\n    def convert_file(self):\n        pass\n\n    def add_class(self):\n        pass\n\n    def print_program(self):\n        pass\n\n    def return_program(self):\n        pass\n\n    def read_file(self):\n        pass\n\n\nclass FileReader:\n\n    allMyClasses = 'ArrayObject'\n    code = 'String'\n\n    def __init__(self):\n        pass\n\n    def check_if_plantuml(self):\n        pass\n\n    def count_occurences(self):\n        pass\n\n    def find_classes(self):\n        pass\n\n\nclass ClassBuilder:\n\n    name = 'Object'\n    attributes = 'Object'\n    methods = 'Object'\n    all_my_attributes = 'ArrayObject'\n    all_my_methods = 'ArrayObject'\n\n    def __init__(self):\n        pass\n\n    def add_class_attributes(self):\n        pass\n\n    def add_class_methods(self):\n        pass\n\n    def print_class(self):\n        pass\n\n    def return_class(self):\n        pass\n\n\nclass Attribute:\n\n    name = 'Object'\n    _return = 'Object'\n\n    def __init__(self):\n        pass\n\n    def __str__(self):\n        pass\n\n\nclass Method:\n\n    name = 'Object'\n    _return = 'Object'\n\n    def __init__(self):\n        pass\n\n    def __str__(self):\n        pass\n\n\nclass FileView:\n\n    error_message = 'String'\n\n    def __init__(self):\n        pass\n\n    def fc_defaults(self):\n        pass\n\n    def fc_file_found(self):\n        pass\n\n    def fc_file_not_found(self):\n        pass\n\n    def fc_syntax_error(self):\n        pass\n\n    def fc_permission_error(self):\n        pass\n\n    def fc_load_file_error(self):\n        pass\n\n    def fc_plantuml_converting(self):\n        pass\n\n    def fc_plantuml_classes_not_found(self):\n        pass\n\n    def fr_file_accepted(self):\n        pass\n\n    def fr_plantuml_error(self):\n        pass\n\n    def file_written(self):\n        pass\n\n    def fe_defaults(self):\n        pass\n\n    def fe_too_many_args(self):\n        pass\n\n    def fe_command_syntax(self):\n        pass\n\n    def fe_abs_syntax(self):\n        pass\n\n    def fe_abs_path_error(self):\n        pass\n\n    def output(self):\n        pass\n\n    def general_error(self):\n        pass\n\n    def print_help(self):\n        pass\n\n    def display_graph_code(self):\n        pass\n\n    def file_error(self):\n        pass\n\n\nclass FileWriter:\n\n    def __init__(self):\n        pass\n\n    def write_file(self):\n        pass\n\n\nclass FileExecuter:\n\n    command = 'String'\n\n    def __init__(self):\n        pass\n\n    def main(self):\n        pass\n\n    def print_to_screen(self):\n        pass\n\n")
+# File generated & created on: 2019-03-25 15:48:47.003622
+# File passes the PEP8 check.
+
+
+class GraphInterpreter:
+
+    command: str 
+
+    def __init__(self):
+        pass
+
+    def display(self):
+        pass
+
+    def handle_command(self):
+        pass
+
+    def read_file(self):
+        pass
+
+    def quit(self):
+        pass
+
+    def validate(self):
+        pass
+
+    def view_help(self):
+        pass
+
+
+class FileVerifier:
+
+    theData: str 
+
+    def __init__(self):
+        pass
+
+    def file_validate(self):
+        pass
+
+
+class FileReader:
+
+    file: str 
+    contents: str 
+
+    def __init__(self):
+        pass
+
+    def add_file(self):
+        pass
+
+    def open_file(self):
+        pass
+
+    def read_data(self):
+        pass
+
+
+class FileView:
+
+    def __init__(self):
+        pass
+
+    def display_graph_code(self):
+        pass
+
+
+class FileWriter:
+
+    def __init__(self):
+        pass
+
+    def write_file(self):
+        pass
+
+
+class FileExecuter:
+
+    def __init__(self):
+        pass
+
+    def main(self):
+        pass
+

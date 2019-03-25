@@ -184,9 +184,13 @@ class Attribute:
     def __init__(self, new_name, new_return):
         self.name = new_name
         self._return = new_return
+        self.name = self.name.strip(' ')
 
     def __str__(self):
-        return f"    {self.name}= '{self._return}'"
+        if self._return == "String":
+            return f"    {self.name}: str "
+        elif self._return == "Integer":
+            return f"    {self.name}: int "
 
 
 """
