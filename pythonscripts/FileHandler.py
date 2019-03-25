@@ -193,6 +193,10 @@ class Attribute:
             return f"    {self.name}: int "
         elif self._return == "ArrayObject":
             return f"    {self.name}: list "
+        elif self._return == "Object":
+            return f"    {self.name}: object "
+        else:
+            return f"    {self.name}: '{self._return}' "
 
 
 """

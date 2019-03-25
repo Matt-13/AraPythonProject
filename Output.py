@@ -1,11 +1,12 @@
-# File generated & created on: 2019-03-25 15:58:21.243222
+# File generated & created on: 2019-03-25 16:26:05.833451
 # File passes the PEP8 check.
 
 
 class FileController:
 
-    command: str
-    array: list
+    command: str 
+    data: str 
+    file_location: str 
 
     def __init__(self):
         pass
@@ -19,51 +20,181 @@ class FileController:
     def read_file(self):
         pass
 
-    def quit(self):
+    def print_file(self):
         pass
 
-    def validate(self):
+    def save_file(self):
+        pass
+
+    def quit(self):
         pass
 
     def view_help(self):
         pass
 
+    def output_error(self):
+        pass
 
-class FileVerifier:
 
-    theData: str 
+class FileConverter:
+
+    classes: list 
+    converted_classes: list 
+    codeToText: str 
 
     def __init__(self):
         pass
 
-    def file_validate(self):
+    def convert_file(self):
+        pass
+
+    def add_class(self):
+        pass
+
+    def print_program(self):
+        pass
+
+    def return_program(self):
+        pass
+
+    def read_file(self):
         pass
 
 
 class FileReader:
 
-    file: str 
-    contents: str 
+    allMyClasses: list 
+    code: str 
 
     def __init__(self):
         pass
 
-    def add_file(self):
+    def check_if_plantuml(self):
         pass
 
-    def open_file(self):
+    def count_occurences(self):
         pass
 
-    def read_data(self):
+    def find_classes(self):
+        pass
+
+
+class ClassBuilder:
+
+    name: object 
+    attributes: object 
+    methods: object 
+    all_my_attributes: list 
+    all_my_methods: list 
+
+    def __init__(self):
+        pass
+
+    def add_class_attributes(self):
+        pass
+
+    def add_class_methods(self):
+        pass
+
+    def print_class(self):
+        pass
+
+    def return_class(self):
+        pass
+
+
+class Attribute:
+
+    name: object 
+    _return: object 
+
+    def __init__(self):
+        pass
+
+    def __str__(self):
+        pass
+
+
+class Method:
+
+    name: object 
+    _return: object 
+
+    def __init__(self):
+        pass
+
+    def __str__(self):
         pass
 
 
 class FileView:
 
+    error_message: str 
+
     def __init__(self):
         pass
 
+    def fc_defaults(self):
+        pass
+
+    def fc_file_found(self):
+        pass
+
+    def fc_file_not_found(self):
+        pass
+
+    def fc_syntax_error(self):
+        pass
+
+    def fc_permission_error(self):
+        pass
+
+    def fc_load_file_error(self):
+        pass
+
+    def fc_plantuml_converting(self):
+        pass
+
+    def fc_plantuml_classes_not_found(self):
+        pass
+
+    def fr_file_accepted(self):
+        pass
+
+    def fr_plantuml_error(self):
+        pass
+
+    def file_written(self):
+        pass
+
+    def fe_defaults(self):
+        pass
+
+    def fe_too_many_args(self):
+        pass
+
+    def fe_command_syntax(self):
+        pass
+
+    def fe_abs_syntax(self):
+        pass
+
+    def fe_abs_path_error(self):
+        pass
+
+    def output(self):
+        pass
+
+    def general_error(self):
+        pass
+
+    def print_help(self):
+        pass
+
     def display_graph_code(self):
+        pass
+
+    def file_error(self):
         pass
 
 
@@ -78,9 +209,14 @@ class FileWriter:
 
 class FileExecuter:
 
+    command: str 
+
     def __init__(self):
         pass
 
     def main(self):
+        pass
+
+    def print_to_screen(self):
         pass
 
