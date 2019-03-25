@@ -6,6 +6,7 @@
 # Code passes the PEP8 Check.
 
 import datetime
+import re
 from pythonscripts.FileView import FileView
 fv = FileView()
 
@@ -37,6 +38,23 @@ class FileConverter:
         new_class.add_class_attributes()
         new_class.add_class_methods()
         self.converted_classes.append(new_class)
+
+    # Some work on relationships
+    def find_relationship(self, relationship, class_name):
+        if relationship.startswith(class_name):
+            pass
+        elif relationship.endswith(class_name):
+            if len(relationship.split(" ")) < 2:
+                pass
+            if re.search(r"-->", relationship):
+                ext_class = relationship.split(" ")[0]
+                return tuple(("assos", ext_class))
+            if re.search(r"\*--", relationship):
+                com_class = relationship.split(" ")[2]
+                return tuple(("comp", com_class))
+            if re.search(r"o-", relationship):
+                as_class = relationship.split(" ")[2]
+                return tuple(("agreg", as_class))
 
     # Made by Sarah
     def print_program(self):
@@ -118,6 +136,10 @@ class ClassBuilder:
         self.methods = new_methods
         self.all_my_attributes = []
         self.all_my_methods = []
+        self.all_my_relationships = []
+        self.all_my_associated_classes = []
+        self.all_my_aggregated_classes = []
+        self.all_my_composite_classes = []
 
     def add_class_attributes(self):
         for an_attribute in self.attributes:
@@ -132,6 +154,19 @@ class ClassBuilder:
             new_m_return = a_method.split("()")[1]
             new_m = Method(new_m_name, new_m_return)
             self.all_my_methods.append(new_m)
+
+    # Some work on relationships
+    def add_class_relationships(self):
+        for a_relationship in self.all_my_relationships:
+            if "comp" in a_relationship:
+                new_relationship = Relationship(a_relationship)
+                self.all_my_composite_classes.append(new_relationship)
+            if "aggreg" in a_relationship:
+                new_relationship = Relationship(a_relationship)
+                self.all_my_aggregated_classes.append(new_relationship)
+            if "assoc" in a_relationship:
+                new_relationship = Relationship(a_relationship)
+                self.all_my_associated_classes.append(new_relationship)
 
     # Liam Brydon's modified code (originally created by Sarah Ball)
     # Used only for debug!
@@ -212,3 +247,17 @@ class Method:
 
     def __str__(self):
         return f"    def {self.name}(self):\n        pass"
+
+
+"""
+Matt's Relationship code
+"""
+
+
+class Relationship:
+    def __init__(self, new_type):
+        self.name = new_type[1]
+        self.type = new_type[0]
+
+    def __str__(self):
+        return f"{self.name}s"
