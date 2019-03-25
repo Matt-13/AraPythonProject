@@ -15,6 +15,7 @@ class FileConverter:
     def __init__(self):
         self.classes = []
         self.converted_classes = []
+        self.my_relationship_content = ""
         self.codeToText = ""
 
     # Made by Sarah - Modified by Matt
@@ -24,17 +25,23 @@ class FileConverter:
             class_name = class_info.split(' ')[1]
             attributes = []
             methods = []
+            relationships = []
             for line in class_info.split("\n"):
                 if line.find(":") != -1:
                     attributes.append(line)
             for line in class_info.split("\n"):
                 if line.find("()") != -1:
                     methods.append(line)
-            self.add_class(class_name, attributes, methods)
+            for relationship in self.my_relationship_content.split("\n"):
+                if self.find_relationship(relationship, class_name):
+                    relationships.append(
+                        self.find_relationship(relationship, class_name))
+            self.add_class(class_name, attributes, methods, relationships)
+            print(relationships)
 
     # Made by Sarah
-    def add_class(self, class_name, attributes, methods):
-        new_class = ClassBuilder(class_name, attributes, methods)
+    def add_class(self, class_name, attributes, methods, relationships):
+        new_class = ClassBuilder(class_name, attributes, methods, relationships)
         new_class.add_class_attributes()
         new_class.add_class_methods()
         self.converted_classes.append(new_class)
@@ -77,6 +84,8 @@ class FileConverter:
             data = filename.read()
         rduml = FileReader(data)
         self.classes = rduml.find_classes()
+        self.my_relationship_content = \
+            self.classes[len(self.classes) - 1]
 
 
 fc = FileConverter()
@@ -120,7 +129,6 @@ class FileReader:
 
                 for i in range(0, value):
                     self.allMyClasses.append(self.code.split("}\nclass")[i])
-
                 return self.allMyClasses
             else:
                 fv.fr_plantuml_error()
@@ -130,10 +138,11 @@ class FileReader:
 
 # Made by Sarah
 class ClassBuilder:
-    def __init__(self, class_name, new_attributes, new_methods):
+    def __init__(self, class_name, new_attributes, new_methods, relationships):
         self.name = class_name
         self.attributes = new_attributes
         self.methods = new_methods
+        self.relationships = relationships
         self.all_my_attributes = []
         self.all_my_methods = []
         self.all_my_relationships = []
@@ -199,6 +208,13 @@ class ClassBuilder:
                 out += str("{}".format(x))
                 out += str("\n")
                 count += 1
+
+        # Liam please figure out ;)
+        # Need some way to print the self.allmyrelationships array
+        # Need some way to print the self.allmyassosclasses array
+        # Need some way to print the self.allmyaggregclasses array
+        # Need some way to print the self.allmycompclasses array
+        print(self.all_my_relationships)
 
         out += str("    " + "def __init__(self):\n")
         out += str("        " + "pass\n\n")

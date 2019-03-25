@@ -28,12 +28,10 @@ write_file()
 class FileExecuter {
 main()
 }
-FileController *-- "Sends" FileVerifier
-FileController *-- "Sends" FileView
-FileVerifier *-- "Loads" FileReader
-FileReader o- "Updates" FileView
-FileView o- "Opens" FileWriter
-FileExecuter --> "Starts" FileController
-
-
+FileController *-- FileVerifier
+FileController *-- FileView
+FileVerifier *-- FileReader
+FileReader o- FileView
+FileView o- FileWriter
+FileExecuter --> FileController
 @enduml

@@ -41,13 +41,13 @@ print_class()
 return_class()
 }
 class Attribute {
-name : Object
-_return : Object
+name = Object
+_return = Object
 __str__()
 }
 class Method {
-name : Object
-_return : Object
+name = Object
+_return = Object
 __str__()
 }
 class FileView {
