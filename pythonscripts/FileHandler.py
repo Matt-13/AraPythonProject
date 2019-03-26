@@ -52,15 +52,15 @@ class FileConverter:
         elif relationship.endswith(class_name):
             if len(relationship.split(" ")) < 2:
                 pass
-            if re.search(r"-->", relationship):
+            elif re.search(r"-->", relationship):
                 ext_class = relationship.split(" ")[0]
-                return tuple(("assos", ext_class))
-            if re.search(r"\*--", relationship):
-                com_class = relationship.split(" ")[2]
-                return tuple(("comp", com_class))
-            if re.search(r"o-", relationship):
-                as_class = relationship.split(" ")[2]
-                return tuple(("agreg", as_class))
+                return tuple(("association of", ext_class))
+            elif re.search(r"\*--", relationship):
+                com_class = relationship.split(" ")[0]
+                return tuple(("composition of", com_class))
+            elif re.search(r"o-", relationship):
+                as_class = relationship.split(" ")[0]
+                return tuple(("aggregation of", as_class))
 
     # Made by Sarah
     def print_program(self):
@@ -208,25 +208,10 @@ class ClassBuilder:
                 out += str("\n")
                 count += 1
 
-        # Liam please figure out ;)
-        # Need some way to print the self.allmyrelationships array
-        # Need some way to print the self.allmyassosclasses array
-        # Need some way to print the self.allmyaggregclasses array
-        # Need some way to print the self.allmycompclasses array
-
+        # Don't worry, I figured this out :P - Easy carry
         out += str("    " + "def __init__(self):\n")
-
-        # Not sure how to implement printing of relationships!
-        # if self.name == self.all_my_relationships[1]:
-        #    if self.all_my_relationships[0] == "assos":
-        #        out += str("        " + str(self.all_my_relationships[1]) + f'= {self.all_my_relationships[1]}')
-        #    elif self.all_my_relationships[0] == "comp":
-        #        out += str("        " + str(self.all_my_relationships[1]) + f'= {self.all_my_relationships[1]}')
-        #    elif self.all_my_relationships[0] == "aggreg":
-        #        out += str("        " + str(self.all_my_relationships[1]) + f'= {self.all_my_relationships[1]}')
-        # out += str("        " + self.relationships[0])
         for a_class in self.relationships:
-            out += str(f"        # {a_class[1]} = {a_class[0]}\n")
+            out += str(f"        {str(a_class[1]).lower()} = {a_class[1]}()  # {a_class[0]}\n")
         out += "\n"
         out += str("        " + "pass\n\n")
 

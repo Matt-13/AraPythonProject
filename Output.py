@@ -1,4 +1,4 @@
-# File generated & created on: 2019-03-25 16:26:05.833451
+# File generated & created on: 2019-03-26 21:19:52.210179
 # File passes the PEP8 check.
 
 
@@ -9,6 +9,8 @@ class FileController:
     file_location: str 
 
     def __init__(self):
+        fileexecuter = FileExecuter()  # assos
+
         pass
 
     def display(self):
@@ -43,6 +45,8 @@ class FileConverter:
     codeToText: str 
 
     def __init__(self):
+        filecontroller = FileController()  # comp
+
         pass
 
     def convert_file(self):
@@ -67,6 +71,8 @@ class FileReader:
     code: str 
 
     def __init__(self):
+        fileconverter = FileConverter()  # comp
+
         pass
 
     def check_if_plantuml(self):
@@ -88,6 +94,8 @@ class ClassBuilder:
     all_my_methods: list 
 
     def __init__(self):
+        fileconverter = FileConverter()  # comp
+
         pass
 
     def add_class_attributes(self):
@@ -105,10 +113,9 @@ class ClassBuilder:
 
 class Attribute:
 
-    name: object 
-    _return: object 
-
     def __init__(self):
+        classbuilder = ClassBuilder()  # comp
+
         pass
 
     def __str__(self):
@@ -117,10 +124,9 @@ class Attribute:
 
 class Method:
 
-    name: object 
-    _return: object 
-
     def __init__(self):
+        classbuilder = ClassBuilder()  # comp
+
         pass
 
     def __str__(self):
@@ -132,6 +138,9 @@ class FileView:
     error_message: str 
 
     def __init__(self):
+        filecontroller = FileController()  # comp
+        filereader = FileReader()  # agreg
+
         pass
 
     def fc_defaults(self):
@@ -201,6 +210,8 @@ class FileView:
 class FileWriter:
 
     def __init__(self):
+        filecontroller = FileController()  # agreg
+
         pass
 
     def write_file(self):
@@ -212,6 +223,7 @@ class FileExecuter:
     command: str 
 
     def __init__(self):
+
         pass
 
     def main(self):
