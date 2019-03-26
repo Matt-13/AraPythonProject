@@ -37,7 +37,6 @@ class FileConverter:
                     relationships.append(
                         self.find_relationship(relationship, class_name))
             self.add_class(class_name, attributes, methods, relationships)
-            print(relationships)
 
     # Made by Sarah
     def add_class(self, class_name, attributes, methods, relationships):
@@ -214,9 +213,18 @@ class ClassBuilder:
         # Need some way to print the self.allmyassosclasses array
         # Need some way to print the self.allmyaggregclasses array
         # Need some way to print the self.allmycompclasses array
-        print(self.all_my_relationships)
 
         out += str("    " + "def __init__(self):\n")
+
+        # Not sure how to implement printing of relationships!
+        # if self.name == self.all_my_relationships[1]:
+        #    if self.all_my_relationships[0] == "assos":
+        #        out += str("        " + str(self.all_my_relationships[1]) + f'= {self.all_my_relationships[1]}')
+        #    elif self.all_my_relationships[0] == "comp":
+        #        out += str("        " + str(self.all_my_relationships[1]) + f'= {self.all_my_relationships[1]}')
+        #    elif self.all_my_relationships[0] == "aggreg":
+        #        out += str("        " + str(self.all_my_relationships[1]) + f'= {self.all_my_relationships[1]}')
+        # out += str("        " + self.relationships[0])
         out += str("        " + "pass\n\n")
 
         for x in self.all_my_methods:
