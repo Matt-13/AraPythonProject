@@ -1,4 +1,4 @@
-# File generated & created on: 2019-03-26 19:28:34.078061
+# File generated & created on: 2019-03-26 19:54:08.973810
 # File passes the PEP8 check.
 
 
@@ -7,6 +7,8 @@ class FileController:
     command: str 
 
     def __init__(self):
+        # FileExecuter = assos
+
         pass
 
     def display(self):
@@ -33,6 +35,8 @@ class FileVerifier:
     theData: str 
 
     def __init__(self):
+        # FileVerifier = comp
+
         pass
 
     def file_validate(self):
@@ -45,6 +49,8 @@ class FileReader:
     contents: str 
 
     def __init__(self):
+        # FileReader = comp
+
         pass
 
     def add_file(self):
@@ -60,6 +66,9 @@ class FileReader:
 class FileView:
 
     def __init__(self):
+        # FileView = comp
+        # FileView = agreg
+
         pass
 
     def display_graph_code(self):
@@ -69,6 +78,8 @@ class FileView:
 class FileWriter:
 
     def __init__(self):
+        # FileWriter = agreg
+
         pass
 
     def write_file(self):
@@ -78,6 +89,7 @@ class FileWriter:
 class FileExecuter:
 
     def __init__(self):
+
         pass
 
     def main(self):

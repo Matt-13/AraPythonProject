@@ -225,6 +225,9 @@ class ClassBuilder:
         #    elif self.all_my_relationships[0] == "aggreg":
         #        out += str("        " + str(self.all_my_relationships[1]) + f'= {self.all_my_relationships[1]}')
         # out += str("        " + self.relationships[0])
+        for a_class in self.relationships:
+            out += str(f"        # {a_class[1]} = {a_class[0]}\n")
+        out += "\n"
         out += str("        " + "pass\n\n")
 
         for x in self.all_my_methods:
