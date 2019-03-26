@@ -85,9 +85,11 @@ def main(argv):
         print("Permission Error!\n"
               "Check you have the permission to read the file!")
 
+
 # Liam
 def print_to_screen():
-    their_answer = input("Would you like to print the code to the screen? y/n: ")
+    their_answer = input("Would you like to print the "
+                         "code to the screen? y/n: ")
     if their_answer == "y":
         fc.print_file()
 

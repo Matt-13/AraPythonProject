@@ -40,7 +40,8 @@ class FileConverter:
 
     # Made by Sarah
     def add_class(self, class_name, attributes, methods, relationships):
-        new_class = ClassBuilder(class_name, attributes, methods, relationships)
+        new_class = ClassBuilder(class_name, attributes,
+                                 methods, relationships)
         new_class.add_class_attributes()
         new_class.add_class_methods()
         self.converted_classes.append(new_class)
@@ -75,6 +76,7 @@ class FileConverter:
         out += "\n\n"
         for x in self.converted_classes:
             out += (x.return_class())
+        # out += ""
         self.codeToText += out
 
     # Made by Matt & Liam
@@ -211,7 +213,12 @@ class ClassBuilder:
         # Don't worry, I figured this out :P - Easy carry
         out += str("    " + "def __init__(self):\n")
         for a_class in self.relationships:
-            out += str(f"        {str(a_class[1]).lower()} = {a_class[1]}()  # {a_class[0]}\n")
+            out += str(
+                "        "
+                f"{str(a_class[1]).lower()}"
+                f" = {a_class[1]}()  "
+                f"# {a_class[0]}\n"
+            )
         out += "\n"
         out += str("        " + "pass\n\n")
 
@@ -235,13 +242,13 @@ class Attribute:
 
     def __str__(self):
         if self._return == "String":
-            return f"    {self.name}: str "
+            return f"    {self.name}: str"
         elif self._return == "Integer":
-            return f"    {self.name}: int "
+            return f"    {self.name}: int"
         elif self._return == "ArrayObject":
-            return f"    {self.name}: list "
+            return f"    {self.name}: list"
         elif self._return == "Object":
-            return f"    {self.name}: object "
+            return f"    {self.name}: object"
         else:
             return f"    {self.name}: '{self._return}' "
 

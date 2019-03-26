@@ -103,8 +103,8 @@ class FileView:
 
     @staticmethod
     def file_written(file):
-        print("\nFile(s) Successfully Written to Disk: "
-              + file)
+        print("\nFile(s) Successfully Written to Disk: " +
+              file)
 
     @staticmethod
     def fr_plantuml_error():

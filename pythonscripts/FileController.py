@@ -3,7 +3,7 @@
 # Ignore errors here.
 from pythonscripts.FileHandler import FileConverter
 from pythonscripts.FileView import FileView
-from pythonscripts.FileWriter import  FileWriter
+from pythonscripts.FileWriter import FileWriter
 import os
 from pythonscripts.DataBase import *
 
@@ -91,7 +91,7 @@ class FileController:
         fw.write_file(self.data, "Output.py")
         create_table()
         data_entry(self.data)
-        #fv.file_written("Output.txt, Output.py")
+        # fv.file_written("Output.txt, Output.py")
 
     # Liam
     def print_file(self):
