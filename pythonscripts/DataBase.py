@@ -67,4 +67,4 @@ def get_code(code_id):
 
 conn.commit()
 
-conn.close()
+# conn.close()

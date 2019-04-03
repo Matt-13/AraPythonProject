@@ -32,11 +32,9 @@ class FileController:
                     elif os.path.isfile("./Graph.txt"):
                         fv.fc_file_found()
                         self.read_file("./Graph.txt")
-                    else:
-                        fv.general_error()
-                        fv.fc_file_not_found(file_location, "r")
-                except Exception as e:
-                    pass
+                except FileNotFoundError:
+                    fv.general_error()
+                    fv.fc_file_not_found(file_location, "r")
             elif self.command == "load":
                 if file_location.endswith(".txt"):
                     try:
@@ -46,12 +44,11 @@ class FileController:
                         elif os.path.isfile("./{}".format(file_location)):
                             fv.fc_file_found()
                             self.read_file("./{}".format(file_location))
-                        else:
-                            fv.general_error()
-                            fv.fc_load_file_error(file_location)
                     except FileNotFoundError:
+                        fv.general_error()
                         fv.fc_file_not_found(file_location, "r", "load")
                     except PermissionError:
+                        fv.general_error()
                         fv.fc_permission_error()
                 elif file_location == "":
                     fv.general_error()
@@ -126,7 +123,6 @@ class FileController:
                 fv.display('\t' + code)
         except ValueError and TypeError:
             fv.display("Please enter an integer")
-
 
     # Matthew
     def quit(self):

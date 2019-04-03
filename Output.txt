@@ -1,4 +1,4 @@
-# File generated & created on: 2019-04-03 12:14:57.508609
+# File generated & created on: 2019-04-03 19:25:31.922900
 # File passes the PEP8 check.
 
 
@@ -7,7 +7,7 @@ class FileController:
     command: str
 
     def __init__(self):
-        fileexecuter = FileExecuter()  # association of
+        self.fileexecuter = FileExecuter()  # association of
 
         pass
 
@@ -35,7 +35,7 @@ class FileVerifier:
     theData: str
 
     def __init__(self):
-        filecontroller = FileController()  # composition of
+        self.filecontroller = FileController()  # composition of
 
         pass
 
@@ -49,7 +49,7 @@ class FileReader:
     contents: str
 
     def __init__(self):
-        fileverifier = FileVerifier()  # composition of
+        self.fileverifier = FileVerifier()  # composition of
 
         pass
 
@@ -66,8 +66,8 @@ class FileReader:
 class FileView:
 
     def __init__(self):
-        filecontroller = FileController()  # composition of
-        filereader = FileReader()  # aggregation of
+        self.filecontroller = FileController()  # composition of
+        self.filereader = FileReader()  # aggregation of
 
         pass
 
@@ -78,7 +78,7 @@ class FileView:
 class FileWriter:
 
     def __init__(self):
-        fileview = FileView()  # aggregation of
+        self.fileview = FileView()  # aggregation of
 
         pass
 
