@@ -12,8 +12,10 @@ class FileView:
         print(self.error_message)
 
     # File Controller Methods
+    # Made by Liam and Matt
     @staticmethod
     def print_help():
+        # Matt's Code
         print("\n\n")
         print("==================== "
               "Graph Interpreter Help File "
@@ -32,6 +34,14 @@ class FileView:
               "...Loads a file from the root directory")
         print("ABSLOAD {path_to_file\\filename.txt}......"
               ".....Loads a file from an absolute path")
+
+        # Liam's Code
+        print("LOADCODE {Code_ID}......................."
+              "..........Loads code from the data base")
+        print("PRINTCODE {Code_ID}................."
+              "...Prints code from the data base to the cmd")
+        print("SAVE {filename.txt}{Code_ID}..........."
+              "..Saves code from database to a text file")
 
     @staticmethod
     def fc_defaults(file_location):

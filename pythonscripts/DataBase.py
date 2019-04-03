@@ -3,10 +3,10 @@
 
 import sqlite3
 
-conn = sqlite3.connect('assignment.db')
+
 
 try:
-    conn
+    conn = sqlite3.connect('assignment.db')
 except Exception as e:
     print(e)
 else:
@@ -32,8 +32,6 @@ def data_entry(code):
     cursor.execute("""SELECT MAX(codeID) FROM
      savedCode""")
     max_id = cursor.fetchone()[0]
-
-    print(max_id)
     cursor.execute("SELECT codeID FROM "
                    "savedCode WHERE codeID = (?)", (max_id,))
     identification = cursor.fetchone()[0]
@@ -69,4 +67,4 @@ def get_code(code_id):
 
 conn.commit()
 
-# conn.close()
+conn.close()

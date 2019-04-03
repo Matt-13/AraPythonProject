@@ -119,7 +119,7 @@ class FileReader:
         except Exception as e:
             print(e)
 
-    # Made by Liam & Matt
+    # Made by Liam & matt
     def find_classes(self):
         try:
             isplantuml = self.check_if_plantuml(self.code)

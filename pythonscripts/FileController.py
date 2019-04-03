@@ -117,12 +117,16 @@ class FileController:
 
     # Liam
     def print_code(self, code_id):
-        return_bool, code = get_code(code_id)
-        if return_bool:
-            fv.display_graph_code(code)
-        else:
-            fv.display("ERROR: code failed to load:")
-            fv.display('\t' + code)
+        try:
+            return_bool, code = get_code(code_id)
+            if return_bool:
+                fv.display_graph_code(code)
+            else:
+                fv.display("ERROR: code failed to load:")
+                fv.display('\t' + code)
+        except ValueError and TypeError:
+            fv.display("Please enter an integer")
+
 
     # Matthew
     def quit(self):
