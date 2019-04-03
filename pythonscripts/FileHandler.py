@@ -100,13 +100,23 @@ class FileReader:
 
     # Made by Matt
     def check_if_plantuml(self, code):
+        is_plantuml = False
         try:
             if code.startswith("@startuml") and code.endswith("@enduml"):
                 return True
-            else:
-                return False
+        except IOError:
+            fv.general_error()
+            print("The file cannot be read.")
+        except EOFError:
+            fv.general_error()
+            print("Unexpected End of File.")
+        except TypeError:
+            fv.general_error()
+            print("The file must contain a string.")
         except Exception as e:
-            print(e)
+            fv.general_error()
+            print("An Error Occurred" + str(e))
+        return False
 
     # Made by Liam
     # Check if the file contains the word "Class"
@@ -116,8 +126,13 @@ class FileReader:
                 return sentence.lower().split().count(word)
             elif sentence.lower().split().count(word) == 0:
                 fv.fr_plantuml_classes_not_found()
+        except TypeError:
+            fv.general_error()
+            print("The file must contain a string.")
         except Exception as e:
-            print(e)
+            fv.general_error()
+            print("An Error Occurred" + str(e))
+        return
 
     # Made by Liam & matt
     def find_classes(self):
@@ -133,8 +148,13 @@ class FileReader:
                 return self.allMyClasses
             else:
                 fv.fr_plantuml_error()
+        except TypeError:
+            fv.general_error()
+            print("The file must contain a string.")
         except Exception as e:
-            print(e)
+            fv.general_error()
+            print("An Error Occurred" + str(e))
+        return
 
 
 # Made by Sarah
@@ -215,7 +235,7 @@ class ClassBuilder:
         for a_class in self.relationships:
             out += str(
                 "        "
-                f"{str(a_class[1]).lower()}"
+                f"self.{str(a_class[1]).lower()}"
                 f" = {a_class[1]}()  "
                 f"# {a_class[0]}\n"
             )
