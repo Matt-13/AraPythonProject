@@ -195,4 +195,5 @@ if __name__ == "__main__":
         print("Permission Error!\n"
               "Check you have the permission to read the file!")
     else:
-        m.cmdloop()
+        pass
+        # m.cmdloop()
