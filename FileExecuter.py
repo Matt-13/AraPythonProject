@@ -10,16 +10,39 @@ fv = FileView()
 fc = FileController()
 
 
+# 4/04/19 Code passes the PEP8 Check.
 # CMD based code - Matt
+
+
 class Main(cmd.Cmd):
+    def __init__(self):
+        super(Main, self).__init__()
+        self.intro = \
+            "===============================================\n" \
+            "PlantUML to Python Converter\n" \
+            "Please type 'help' for all available commands.\n" \
+            "Please type 'allhelp' to view the help file.\n" \
+            "To continue with a default graph.txt in the\n" \
+            "root directory, press [Enter]\n" \
+            "=============================================="
 
     # CMD - Matt
-    def cmdloop(self, intro="PlantUML to Python Converter\n"
-                            "Please type 'help' for all available commands.\n"
-                            "Please type 'allhelp' to view the help file.\n"
-                            "To continue with a default graph.txt in the\n"
-                            "root directory, press [Enter]"):
-        return cmd.Cmd.cmdloop(self, intro)
+    def cmdloop(self, intro=None):
+        print(self.intro)
+        while True:
+            try:
+                super(Main, self).cmdloop(intro="")
+                break
+            except KeyboardInterrupt:
+                print("Ctrl + C pressed, but ignored. "
+                      "Please use 'exit' or 'quit' "
+                      "to stop the program.")
+            except TypeError and ValueError:
+                fv.general_error()
+                print("Please verify your command, and try again.")
+            except Exception:
+                fv.general_error()
+                print("An error has occurred.")
 
     # Continues when no command is entered - Matt
     def emptyline(self):
@@ -34,6 +57,8 @@ class Main(cmd.Cmd):
         Usage: LOAD [filename.txt]
         """
         fc.handle_command("load", line)
+        fv.next_command()
+
         """
         userinput = input("Would you like to view the file? (Y/N) ")
         if userinput.lower() == "y":
@@ -55,9 +80,11 @@ class Main(cmd.Cmd):
         """
         if "\\" in line:
             fc.handle_command("absload", line)
+            fv.next_command()
         else:
             fv.general_error()
             fv.fe_abs_path_error()
+            fv.next_command()
 
     # View help file - Matt and Liam
     def do_allhelp(self, line):
@@ -66,6 +93,7 @@ class Main(cmd.Cmd):
         Usage: ALLHELP
         """
         fv.print_help()
+        fv.next_command()
 
     # Exit method - Matt
     def do_exit(self, line):
@@ -91,6 +119,7 @@ class Main(cmd.Cmd):
         """
         line = line.split(' ')
         fc.save_file(line[0], line[1])
+        fv.next_command()
 
     # Printcode method - Liam
     def do_printcode(self, line):
@@ -99,6 +128,7 @@ class Main(cmd.Cmd):
         Usage: printcode {code_id}
         """
         fc.print_code(line)
+        fv.next_command()
 
     # Loadcode method - Liam
     def do_loadcode(self, line):
@@ -107,6 +137,7 @@ class Main(cmd.Cmd):
         Usage: loadcode {code_id}
         """
         fc.load_code(line)
+        fv.next_command()
 
     # Printfile method - Liam
     def do_printfile(self, line):
@@ -115,6 +146,9 @@ class Main(cmd.Cmd):
         Usage: printfile
         """
         fc.print_file()
+        fv.next_command()
+
+
 # Liam
 def print_to_screen():
     their_answer = input("Would you like to print the "

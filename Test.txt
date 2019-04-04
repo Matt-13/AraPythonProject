@@ -1,11 +1,10 @@
 @startuml
 class Dummy {
-  String data
-  void methods()
+data: String
+methods()
 }
-
 class Flight {
-   flightNumber : Integer
-   departureTime : Date
+flightNumber : Integer
+departureTime : Integer
 }
 @enduml

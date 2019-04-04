@@ -1,5 +1,5 @@
 # Made by Matt - does console output related statements.
-# Code passes the PEP8 Check.
+# Code passes the PEP8 Check. 4/04/19
 import os
 
 
@@ -28,7 +28,7 @@ class FileView:
         print("      if running without a command.")
         print("Command syntax: FileExecuter.py {optionalcommand}")
         print("")
-        print("HELP.........................."
+        print("ALLHELP......................."
               "...........................Displays this help page")
         print("LOAD {filename.txt}......................"
               "...Loads a file from the root directory")
@@ -172,3 +172,13 @@ class FileView:
     @staticmethod
     def file_error():
         print("")
+
+    # FileExecuter CMD Methods
+    @staticmethod
+    def next_command():
+        print("............................."
+              "..................................")
+        print("Awaiting next command.. Type "
+              "'help' for all available commands.")
+        print("To quit the program.. Type "
+              "'exit' or 'quit'.")
