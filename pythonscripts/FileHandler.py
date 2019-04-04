@@ -134,7 +134,7 @@ class FileReader:
             print("An Error Occurred" + str(e))
         return
 
-    # Made by Liam & matt
+    # Made by Liam Finds and splits up the classes then stores them in an array
     def find_classes(self):
         try:
             isplantuml = self.check_if_plantuml(self.code)
@@ -229,7 +229,7 @@ class ClassBuilder:
                 out += str("\n")
                 count += 1
 
-        # Don't worry, I figured this out :P - Easy carry
+        # Don't worry, I figured this out :P - Easy carry made by matt
         out += str("    " + "def __init__(self):\n")
         for a_class in self.relationships:
             out += str(

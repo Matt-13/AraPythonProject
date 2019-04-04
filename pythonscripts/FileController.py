@@ -80,19 +80,32 @@ class FileController:
 
     # Reads file - Liam
     def read_file(self, filename):
-        fconv.read_file(filename)
-        fconv.convert_file()
-        fconv.return_program()
-        self.data = fconv.codeToText
-        fw.write_file(self.data, "Output.txt")
-        fw.write_file(self.data, "Output.py")
-        create_table()
-        data_entry(self.data)
-        # fv.file_written("Output.txt, Output.py")
+        try:
+            fconv.read_file(filename)
+            fconv.convert_file()
+            fconv.return_program()
+            self.data = fconv.codeToText
+            fw.write_file(self.data, "Output.txt")
+            fw.write_file(self.data, "Output.py")
+            create_table()
+            data_entry(self.data)
+            # fv.file_written("Output.txt, Output.py")
+        except AttributeError as e:
+            print(e)
+        except IOError:
+            print("System failed to save to file")
+        except ValueError and TypeError:
+            fv.display("Please enter an integer")
+        except Exception:
+            fv.general_error()
+            print("An error has occurred")
 
     # Liam
     def print_file(self):
-        fv.display_graph_code(self.data)
+        try:
+            fv.display_graph_code(self.data)
+        except IOError:
+            print("System failed to load to file")
 
     # Liam
     def save_file(self, file_name, code_id):
@@ -119,8 +132,10 @@ class FileController:
                 fv.display('\t' + code)
         except AttributeError as e:
             print(e)
-        except IOError as e:
+        except IOError:
             print("System failed to save to file")
+        except ValueError and TypeError:
+            fv.display("Please enter an integer")
         except Exception:
             fv.general_error()
             print("An error has occurred")
@@ -135,6 +150,8 @@ class FileController:
                 fv.display('\t' + code)
         except ValueError and TypeError:
             fv.display("Please enter an integer")
+        except IOError:
+            print("System failed to load to file")
 
     # Matthew
     def quit(self):
