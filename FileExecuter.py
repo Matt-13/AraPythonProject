@@ -103,7 +103,38 @@ class Main(cmd.Cmd):
         """
         self.do_exit(line)
 
+    # Save method - Liam
+    def do_save(self, line):
+        """
+        Saves the converted plantuml code from the database to a textfile
+        Usage: save {filename.txt} {code_id}
+        """
+        line = line.split(' ')
+        fc.save_file(line[0], line[1])
 
+    # Printcode method - Liam
+    def do_printcode(self, line):
+        """
+        Prints the converted plantuml code from the database to the cmd
+        Usage: printcode {code_id}
+        """
+        fc.print_code(line)
+
+    # Loadcode method - Liam
+    def do_loadcode(self, line):
+        """
+        Loads code from the database into self.data
+        Usage: loadcode {code_id}
+        """
+        fc.load_code(line)
+
+    # Printcode method - Liam
+    def do_printfile(self, line):
+        """
+        Prints the data saved inside self.data to the cmd
+        Usage: printfile
+        """
+        fc.print_file()
 # Liam
 def print_to_screen():
     their_answer = input("Would you like to print the "

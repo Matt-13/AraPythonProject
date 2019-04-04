@@ -101,17 +101,29 @@ class FileController:
             fw.write_file(get_code(code_id), file_name)
         except AttributeError as e:
             print(e)
+        except IOError as e:
+            print("System failed to save to file")
+        except Exception:
+            fv.general_error()
+            print("An error has occurred")
 
     # Liam
     def load_code(self, code_id):
-        return_bool, code = get_code(code_id)
-        if return_bool:
-            self.data = code
-            fv.display("Code has loaded successfully")
-        else:
-            fv.display("ERROR: code failed to load:")
-            fv.display('\t' + code)
-
+        try:
+            return_bool, code = get_code(code_id)
+            if return_bool:
+                self.data = code
+                fv.display("Code has loaded successfully")
+            else:
+                fv.display("ERROR: code failed to load:")
+                fv.display('\t' + code)
+        except AttributeError as e:
+            print(e)
+        except IOError as e:
+            print("System failed to save to file")
+        except Exception:
+            fv.general_error()
+            print("An error has occurred")
     # Liam
     def print_code(self, code_id):
         try:
