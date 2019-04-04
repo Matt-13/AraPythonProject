@@ -59,33 +59,13 @@ class Main(cmd.Cmd):
             fv.general_error()
             fv.fe_abs_path_error()
 
-    # View help file - Matt
+    # View help file - Matt and Liam
     def do_allhelp(self, line):
         """
         SHOWS all HELP relating to this program.
         Usage: ALLHELP
         """
-        print("==================="
-              " ......-=[ Graph Interpreter ]=-...... "
-              "====================")
-        print("Translates your SOURCE plantUML file to a "
-              "python file")
-        print("in the ROOT directory provided")
-        print("Please use the builtin Windows Command "
-              "'CD' to change your directory")
-        print("========================"
-              " ......-=[ Commands ]=-...... "
-              "========================")
-        print("LOAD file: load [filename]")
-        print("LOAD file from custom directory: "
-              "absload [path_to_filename]")
-        print("EXIT or QUIT program: "
-              "exit"
-              " *or* "
-              "quit")
-        # Add commands here (Liam)
-        print("======================================="
-              "=======================================")
+        fv.print_help()
 
     # Exit method - Matt
     def do_exit(self, line):
@@ -128,7 +108,7 @@ class Main(cmd.Cmd):
         """
         fc.load_code(line)
 
-    # Printcode method - Liam
+    # Printfile method - Liam
     def do_printfile(self, line):
         """
         Prints the data saved inside self.data to the cmd

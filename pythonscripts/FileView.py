@@ -42,6 +42,8 @@ class FileView:
               "...Prints code from the data base to the cmd")
         print("SAVE {filename.txt}{Code_ID}..........."
               "..Saves code from database to a text file")
+        print("PRINTFILE ................................."
+              "...........Prints code from self.data")
 
     @staticmethod
     def fc_defaults(file_location):
