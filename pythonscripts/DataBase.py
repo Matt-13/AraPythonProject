@@ -2,66 +2,77 @@
 # Created by Liam Brydon
 import sqlite3
 
-try:
-    conn = sqlite3.connect('assignment.db')
-except Exception as e:
-    print(e)
-else:
-    print("Finishing connecting to database")
+class DataBase:
 
-cursor = conn.cursor()
+    def __init__(self, database='assignment.db'):
+        self.database = database
+        self.conn = None
+        self.cursor = None
+        self.connect()
+        self.create_table()
 
-# cursor.execute("""DROP TABLE IF EXISTS savedCode""")
+    def connect(self):
+        try:
+            self.conn = sqlite3.connect(self.database)
+        except sqlite3.Error as e:
+            print("Error connecting to database!")
 
-
-def create_table():
-    cursor.execute("""CREATE TABLE IF NOT EXISTS savedCode(
-    codeID INTEGER PRIMARY KEY AUTOINCREMENT,
-    timeStamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-    code LONGTEXT)""")
-
-
-def data_entry(code):
-    out = ''
-
-    cursor.execute("""INSERT INTO
-     savedCode (code) values(?)""", (code,))
-    cursor.execute("""SELECT MAX(codeID) FROM
-     savedCode""")
-    max_id = cursor.fetchone()[0]
-    cursor.execute("SELECT codeID FROM "
-                   "savedCode WHERE codeID = (?)", (max_id,))
-    identification = cursor.fetchone()[0]
-    cursor.execute("SELECT timeStamp FROM "
-                   "savedCode WHERE codeID = (?)", (max_id,))
-    time_stamp = cursor.fetchone()[0]
-
-    out += "Successfully Submitted to database: \n"
-    out += "\tID = {}\n".format(identification - 1)
-    out += "\tTimeStamp = {}\n".format(str(time_stamp))
-    conn.commit()
-    print(out)
-
-
-def get_code(code_id):
-    cursor.execute("""SELECT MAX(codeID)
-     FROM savedCode""")
-    max_id = cursor.fetchone()[0]
-    try:
-        if int(code_id) >= max_id:
-            return False, "ID doesnt exists in table"
-        elif int(code_id) <= 0:
-            return False, "ID doesnt exists in table"
         else:
-            cursor.execute("SELECT code FROM "
-                           "savedCode WHERE codeID = (?)", (code_id,))
-            return True, cursor.fetchone()[0]
-    except ValueError and TypeError:
-        print("Please enter an integer")
-    except Exception:
-        print(":)")
+            print("Finishing connecting to database")
 
+        self.cursor = self.conn.cursor()
 
-conn.commit()
+    def close(self):
+        if self.conn:
+            self.conn.commit()
+            self.cursor.close()
+            self.conn.close()
 
-# conn.close()
+    def create_table(self):
+        self.cursor.execute("""CREATE TABLE IF NOT EXISTS savedCode(
+        codeID INTEGER PRIMARY KEY AUTOINCREMENT,
+        timeStamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+        code LONGTEXT)""")
+        self.conn.commit()
+
+    def data_entry(self, code):
+        out = ''
+
+        self.cursor.execute("""INSERT INTO
+         savedCode (code) values(?)""", (code,))
+        self.cursor.execute("""SELECT MAX(codeID) FROM
+         savedCode""")
+        max_id = self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT codeID FROM "
+                       "savedCode WHERE codeID = (?)", (max_id,))
+        identification = self.cursor.fetchone()[0]
+        self.cursor.execute("SELECT timeStamp FROM "
+                       "savedCode WHERE codeID = (?)", (max_id,))
+        time_stamp = self.cursor.fetchone()[0]
+
+        out += "Successfully Submitted to database: \n"
+        + "\tID = {}\n".format(identification - 1)
+        + "\tTimeStamp = {}\n".format(str(time_stamp))
+        print(out)
+        self.conn.commit()
+
+    def get_code(self, code_id):
+        out = ''
+        self.cursor.execute("""SELECT MAX(codeID)
+         FROM savedCode""")
+        max_id = self.cursor.fetchone()[0]
+        try:
+            if int(code_id) >= max_id or int(code_id) <= 0:
+                out = "ID doesnt exists in table"
+            else:
+                self.cursor.execute("SELECT code FROM "
+                               "savedCode WHERE codeID = (?)", (code_id,))
+                out = self.cursor.fetchone()[0]
+        except ValueError and TypeError as e:
+            print("Please enter an integer")
+            print(e)
+        except Exception as e:
+            print(e)
+            print(":)")
+        return out
+

@@ -122,13 +122,10 @@ class FileReader:
     # Check if the file contains the word "Class"
     def count_occurrences(self, word, sentence):
         try:
-            if sentence.lower().split().count(word) > 0:
-                lower = sentence.lower()
-                split = lower.split()
-                count = split.count(word)
-
-                return count
-            elif sentence.lower().split().count(word) == 0:
+            lower = sentence.lower()
+            split = lower.split()
+            count = split.count(word)
+            if count == 0:
                 fv.fr_plantuml_classes_not_found()
         except TypeError:
             fv.general_error()
@@ -136,7 +133,7 @@ class FileReader:
         except Exception as e:
             fv.general_error()
             print("An Error Occurred" + str(e))
-        return
+        return count
 
     # Made by Liam Finds and splits up the classes then stores them in an array
     def find_classes(self):

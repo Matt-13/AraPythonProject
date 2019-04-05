@@ -5,11 +5,12 @@ from pythonscripts.FileHandler import FileConverter
 from pythonscripts.FileView import FileView
 from pythonscripts.FileWriter import FileWriter
 import os
-from pythonscripts.DataBase import *
+from pythonscripts.DataBase import DataBase
 
 fconv = FileConverter()
 fw = FileWriter()
 fv = FileView()
+db = DataBase()
 
 
 class FileController:
@@ -87,8 +88,7 @@ class FileController:
             self.data = fconv.codeToText
             fw.write_file(self.data, "Output.txt")
             fw.write_file(self.data, "Output.py")
-            create_table()
-            data_entry(self.data)
+            db.data_entry(self.data)
             # fv.file_written("Output.txt, Output.py")
         except AttributeError as e:
             print(e)
@@ -96,9 +96,10 @@ class FileController:
             print("System failed to save to file")
         except ValueError and TypeError:
             fv.display("Please enter an integer")
-        except Exception:
+        except Exception as e:
             fv.general_error()
             print("An error has occurred")
+            print(e)
 
     # Liam
     def print_file(self):
@@ -106,25 +107,29 @@ class FileController:
             fv.display_graph_code(self.data)
         except IOError:
             print("System failed to load to file")
-
+        except Exception as e:
+            fv.general_error()
+            print("An error has occurred")
+            print(e)
     # Liam
     def save_file(self, file_name, code_id):
-        self.data = get_code(code_id)
+        self.data = db.get_code(code_id)
         try:
-            fw.write_file(get_code(code_id), file_name)
+            fw.write_file(db.get_code(code_id), file_name)
         except AttributeError as e:
             print(e)
         except IOError as e:
             print("System failed to save to file")
-        except Exception:
+        except Exception as e:
             fv.general_error()
             print("An error has occurred")
+            print(e)
 
     # Liam
     def load_code(self, code_id):
         try:
-            return_bool, code = get_code(code_id)
-            if return_bool:
+            code = db.get_code(code_id)
+            if code != '':
                 self.data = code
                 fv.display("Code has loaded successfully")
             else:
@@ -136,14 +141,15 @@ class FileController:
             print("System failed to save to file")
         except ValueError and TypeError:
             fv.display("Please enter an integer")
-        except Exception:
+        except Exception as e:
             fv.general_error()
             print("An error has occurred")
+            print(e)
 
     # Liam
     def print_code(self, code_id):
         try:
-            return_bool, code = get_code(code_id)
+            return_bool, code = db.get_code(code_id)
             if return_bool:
                 fv.display_graph_code(code)
             else:
@@ -151,8 +157,9 @@ class FileController:
                 fv.display('\t' + code)
         except ValueError and TypeError:
             fv.display("Please enter an integer")
-        except IOError:
+        except IOError as e:
             print("System failed to load to file")
+            print(e)
 
     # Matthew
     def quit(self):
