@@ -14,7 +14,7 @@ class DataBase:
     def connect(self):
         try:
             self.conn = sqlite3.connect(self.database)
-        except sqlite3.Error as e:
+        except sqlite3.Error:
             print("Error connecting to database!")
 
         else:
@@ -50,9 +50,9 @@ class DataBase:
                        "savedCode WHERE codeID = (?)", (max_id,))
         time_stamp = self.cursor.fetchone()[0]
 
-        out += "Successfully Submitted to database: \n"
-        + "\tID = {}\n".format(identification - 1)
-        + "\tTimeStamp = {}\n".format(str(time_stamp))
+        out += "Successfully Submitted to database: \n" + \
+               "\tID = {}\n".format(identification - 1) + \
+               "\tTimeStamp = {}\n".format(str(time_stamp))
         print(out)
         self.conn.commit()
 

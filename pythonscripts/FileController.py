@@ -149,8 +149,8 @@ class FileController:
     # Liam
     def print_code(self, code_id):
         try:
-            return_bool, code = db.get_code(code_id)
-            if return_bool:
+            code = db.get_code(code_id)
+            if code != '':
                 fv.display_graph_code(code)
             else:
                 fv.display("ERROR: code failed to load:")
