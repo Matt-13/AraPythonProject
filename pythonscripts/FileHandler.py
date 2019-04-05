@@ -123,7 +123,11 @@ class FileReader:
     def count_occurrences(self, word, sentence):
         try:
             if sentence.lower().split().count(word) > 0:
-                return sentence.lower().split().count(word)
+                lower = sentence.lower()
+                split = lower.split()
+                count = split.count(word)
+
+                return count
             elif sentence.lower().split().count(word) == 0:
                 fv.fr_plantuml_classes_not_found()
         except TypeError:
@@ -213,9 +217,7 @@ class ClassBuilder:
     # Made by Liam
     def return_class(self):
         out = ""
-        out += str("\n")
-        out += str("class {}:").format(self.name)
-        out += str("\n\n")
+        out += str("\nclass {}:\n\n").format(self.name)
 
         length = len(self.all_my_attributes)
         count = 0
